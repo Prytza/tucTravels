@@ -1,5 +1,26 @@
 $(function () {
+
 	initialize();
+	
+	document.onkeydown = function(evt) {
+		evt = evt || window.event;
+		switch (evt.keyCode) {
+			case 37:
+				leftArrowPressed();
+				break;
+			case 38:
+				upArrowPressed();
+				break;
+			case 39:
+				rightArrowPressed();
+				break;
+			case 40:
+				downArrowPressed();
+				break;	
+		}
+	};
+
+
 });
 
 /*
@@ -82,24 +103,6 @@ $(function () {
 		//positionen vi utgår ifrån (tuc)
 	//	lngStart=mobilLng; //14.987047;
 
-	};
-
-	document.onkeydown = function(evt) {
-		evt = evt || window.event;
-		switch (evt.keyCode) {
-			case 37:
-				leftArrowPressed();
-				break;
-			case 38:
-				upArrowPressed();
-				break;
-			case 39:
-				rightArrowPressed();
-				break;
-			case 40:
-				downArrowPressed();
-				break;	
-		}
 	};
 
 	function leftArrowPressed(){
