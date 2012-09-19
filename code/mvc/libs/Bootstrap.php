@@ -3,8 +3,6 @@
 class Bootstrap {
 
 	function __construct() {
-	
-	//echo "bootstrap<br />";
 
 		$url = isset($_GET['url']) ? $_GET['url'] : null;
 		$url = rtrim($url, '/');
