@@ -7,25 +7,21 @@
 	<script src="<?php echo URL; ?>public/js/jquery.js" type="text/javascript"></script>
 	<script src="<?php echo URL; ?>public/js/script.js" type="text/javascript"></script>
 	
-	<!--Här är julius data-->
-	<?php if (isset($this -> tags)) {
+		<!--Här är julius data-->
+	<?php 
 	
-		foreach ($this -> tags as $tag) {
-			echo $tag . "\n	";
-		}
+	// if (isset($this -> tags)) {
 	
-	}?>
+		// foreach ($this -> tags as $tag) {
+			// echo $tag . "\n	";
+		// }
+	
+	// }
+	?>
 	<!--Julius data slut!-->
 	
 	<!--Här är sofias data-->
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-	
-	<style type="text/css">
-		html { height: 100% }
-		body { height: 100%; margin: 0; padding: 0 }
-		#map_canvas { height: 80% }
-	</style>
-
 	<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>  		
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHRJ7aPSIG_eI9Iu27PhBuiQX6wVv9ilU&sensor=true">
 	</script>

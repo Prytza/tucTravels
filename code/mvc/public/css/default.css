@@ -1,4 +1,11 @@
+html {
+	height: 100%
+}
+
 body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
 	background: silver;
 }
 
@@ -19,4 +26,24 @@ body {
 #footer {
 	background: green;
 	padding: 20px;
+}
+
+/*Game*/
+#map_canvas {
+	height: 80%;
+	position:relative;
+}
+
+#helikopter {
+	position: absolute;
+	left: 700px;
+	top: 650px;
+	height: 40px;
+	width: 40px;
+}
+
+#message {
+	position: absolute;
+	left: 700px;
+	top: 600px;
 }

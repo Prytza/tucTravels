@@ -1,5 +1,7 @@
 $(function () {
 
+	alert(1);
+
 	getLocation();
 	//initialize();
 	
@@ -92,7 +94,9 @@ $(function () {
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 		
-		map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);	
+		map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+		alert(2);
 
 	};
 
