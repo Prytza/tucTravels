@@ -15,6 +15,9 @@ class Mobile extends Controller {
 			"6" => '<link rel="stylesheet" href="' . URL . 'public/css/add2home.css">'
 		);
 		
+		// sofias tag. borde dupliceras?
+		// <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		
 		
 	// De taggar från julius som blir dubletter
 	// <meta charset="UTF-8">

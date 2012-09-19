@@ -1,5 +1,7 @@
 $(function () {
 
+	alert(1);
+
 	getLocation();
 	//initialize();
 	
@@ -134,7 +136,9 @@ $(function () {
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 		
-		map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);	
+		map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+		alert(2);
 
 		/*markeringsikoner*/
 		var the_stores_logo = 'localhost/php/integration/gitTucTravel/tucTravels/code/mvc/public/js/helkoptercopy.png';
