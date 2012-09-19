@@ -3,7 +3,7 @@
 class Controller {
 
 	function __construct() {
-		echo "This is the mainController!<br />";
+		//echo "This is the mainController!<br />";
 		$this -> view = new View();
 		
 		//Oavsätt vilken sida man är på hämtas uppgifter om man är inloggad eller ej

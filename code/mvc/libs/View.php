@@ -3,7 +3,7 @@
 class View {
 	
 	function __construct() {
-		echo "This is the mainView!<br />";
+		//echo "This is the mainView!<br />";
 	}
 	
 	public function render($name, $noInclude = false) {
