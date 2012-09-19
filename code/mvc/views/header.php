@@ -7,7 +7,16 @@
 	<script src="<?php echo URL; ?>public/js/jquery.js" type="text/javascript"></script>
 	<script src="<?php echo URL; ?>public/js/script.js" type="text/javascript"></script>
 	
-
+	<!--Här är julius data-->
+	<?php if (isset($this -> tags)) {
+	
+		foreach ($this -> tags as $tag) {
+			echo $tag . "\n	";
+		}
+	
+	}?>
+	<!--Julius data slut!-->
+	
 	<!--Här är sofias data-->
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	
@@ -23,9 +32,7 @@
 	<!--Sofias data slut!-->
 	
 	<?php if (isset($this -> js)) {
-		
-		echo "1223";
-		
+
 		foreach ($this -> js as $js) {
 			echo "<script src='" . URL . "public/js/" . $js . ".js' type='text/javascript'></script>";
 		}
