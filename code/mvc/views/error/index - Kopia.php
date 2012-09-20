@@ -1,1 +1,0 @@
-<h2>Här ska själva spelet visas...</h2>
