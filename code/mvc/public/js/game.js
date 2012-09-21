@@ -1,5 +1,9 @@
 $(function () {
-	
+
+	$.getJSON("game/getDirections", function (data) {
+		console.log(data);
+	});
+
 	getLocation();
 	
 	var helikopter = $("#helikopter");
@@ -7,6 +11,7 @@ $(function () {
 	
 	document.onkeydown = function(evt) {
 		evt = evt || window.event;
+
 		switch (evt.keyCode) {
 			case left:
 				leftKey=true;
@@ -45,11 +50,8 @@ $(function () {
 				break;
 		}
 
-
 	};
-	
-	
-	
+		
 });
 
 	var left  = 37;
@@ -59,9 +61,10 @@ $(function () {
 	
 	var moveDistans = 0.0001;
 	var leftKey, upKey, rightKey, downKey=false;
-	
-//	var mobilLat;
+
+	//	var mobilLat;
 //	var mobilLng; 
+
 	var latStart; 
 	var lngStart;
 	var map;
@@ -253,14 +256,13 @@ $(function () {
 		if(rightKey){//right
 			mobilLng = mobilLng + moveDistans;	
 		}
-		
-		moveMap();	
-		
-	};
+
+		moveMap();
+
+	}
 	
 	function getText(zon){
 		
-		//var floor = Math.floor; floor(latEnd)
 
 		var zonCoordOne   = latEnd + ( 0.001 * zon);//öster om
 		var zonCoordTwo   = latEnd - ( 0.001 * zon);//väster om
@@ -273,31 +275,28 @@ $(function () {
 	
 			if(zon == 4){
 			
-				texten = "Det är en bit kvar";
+				texten = "Zon 4 en bit kvar";
 			
 			}else if(zon == 3){
 				
-				texten = "Ungefär halvvägs..";
+				texten = "Zon 3";
 			
 			}else if(zon == 2){
 				
-				texten = "Ganska nära nu.";
+				texten = " Zon 2 ";
 			
 			}else if(zon == 1){
 				
-				texten = "Det börjar brännas!";
+				texten = "Zon 1 ";
 				
 			}else if(zon == 0.167){
 										
-				texten = "<strong style='color:#ff6633;'><strong>Härligt, du klarade det!!</strong>";
+				texten = "<strong style='color:#ff6633;'><strong>Nice, du klarade det!!</strong>";
 	
-			}else{
-			
-				texten = "Ooups! Du är ganska långt ifrån...";
+			}	
 	
-			}		
-	
-		}
+		}		
+		
 		return texten;
 	};	
 
