@@ -46,16 +46,17 @@
 <?php if (Session::get("loggedIn") == true): ?>
 <a href="<?php echo URL; ?>myprofile">My Profile</a>
 <?php endif; ?>
-<div id="drag_icon">
-</div>
+
 <div id="fb_login">
 	<?php if (isset($this ->fb_login["user"]) && $this ->fb_login["user"] != 0) : ?>
       <a href="<?php echo $this -> fb_login["logoutUrl"]; ?>">Logout</a>
     <?php else: ?>
       <div>
-        <a href="<?php echo $this -> fb_login["loginUrl"]; ?>">Login with Facebook</a>
+        <a href="<?php echo $this -> fb_login["loginUrl"]; ?>"><div id="fb_login_logo"></div></a>
       </div>
     <?php endif ?>
+</div>
+<div id="drag_icon">
 </div>
 </div>
 <div id="content">
