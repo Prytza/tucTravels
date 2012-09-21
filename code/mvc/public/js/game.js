@@ -49,6 +49,7 @@ $(function () {
 
 //	var mobilLat;
 //	var mobilLng; 
+
 	var latStart; 
 	var lngStart;
 	var map;
@@ -248,6 +249,7 @@ $(function () {
 			mobilLat = mobilLat + 0.0001;
 		}else if(keyNumber==39){
 			mobilLng = mobilLng + 0.0001;
+
 		}else if(keyNumber==3738){
 			mobilLng = mobilLng - 0.00005;
 			mobilLat = mobilLat + 0.00005;
@@ -264,6 +266,10 @@ $(function () {
 		
 		moveMap();	
 		
+
+		}
+		moveMap();
+
 	}
 	*/
 	function leftArrowPressed(event){
@@ -301,6 +307,19 @@ $(function () {
 	function getText(zon){
 		
 		var floor = Math.floor;
+
+	//avstånd mellan varje zon, 0.00068(lat/lng) och 0.000196(lat/lng) är ca 70 meter
+		//var changeTextLat = (latStart - latEnd) / 4;
+		//var changeTextLng = (lngStart - lngEnd) / 4;	
+	
+	//	if(changeTextLng < 0){
+	//		alert("mindre än noll...");
+	//	}
+	// var floor = Math.floor;
+	// var x = floor("1000.01")
+		/* alert(latEnd);
+		alert(lngEnd);
+	*/
 
 		var zonCoordOne = floor(latEnd)+ (0.0196 * zon);//öster om
 		var zonCoordTwo = latEnd - (0.0196 * zon);//väster om
