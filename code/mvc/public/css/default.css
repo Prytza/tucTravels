@@ -3,6 +3,7 @@ html {
 }
 
 body {
+	font-family: "Myriad Pro" ;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -10,12 +11,27 @@ body {
 }
 
 #header {
-	background: gold;
+	text-align:center;
+	background: url(../images/bg.jpg);
 	padding: 20px;
+	position:fixed;
+	z-index:4;
+	top: 0;
+	height: 30px;
+	width: 100%;
+	box-shadow: 5px 5px 5px #999;
+	border-bottom: ridge 4px #999;
 }
+#header a{
+	text-decoration: none;	
+	color: white;
+	padding: 10px;
+}
+
 
 #fb_login {
 	float: right;
+	margin-right: 30px;
 }
 
 #content {
@@ -55,4 +71,15 @@ body {
 	position: absolute;
 	left: 700px;
 	top: 600px;
+}
+
+/***********MENYEN*************/
+
+#drag_icon{
+	margin: 0 auto;
+background: blue;	
+height: 50px;
+width: 50px;
+border: 2px solid red;
+	
 }
