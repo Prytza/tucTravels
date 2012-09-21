@@ -1,9 +1,9 @@
 $(function () {
-
-	//alert(1);
-
 	getLocation();
 	//initialize();
+	
+	var helikopter = $("#helikopter");
+	helikopter.css("zIndex", 10);
 	
 	document.onkeydown = function(evt) {
 		evt = evt || window.event;

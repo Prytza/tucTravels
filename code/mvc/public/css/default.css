@@ -21,6 +21,7 @@ body {
 #content {
 	background: #fff;
 	padding: 20px;
+	position: relative;
 }
 
 #footer {
@@ -29,16 +30,23 @@ body {
 }
 
 /*Game*/
+#map_wrapper {
+	height: 800px;
+	width: 800px;
+	margin: auto;
+	position:relative;
+}
+
 #map_canvas {
-	height: 500px;
+	height: 100%;
 	width: 100%;
 	position:relative;
 }
 
 #helikopter {
 	position: absolute;
-	left: 700px;
-	top: 650px;
+	left: 50%;
+	top: 50%;
 	height: 40px;
 	width: 40px;
 }
