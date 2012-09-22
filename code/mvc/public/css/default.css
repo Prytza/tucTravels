@@ -73,7 +73,6 @@ body {
 
 #message {
 	position: absolute;
-<<<<<<< HEAD
 	left: 700px;
 	top: 600px;
 }
@@ -100,8 +99,7 @@ body {
 	position:fixed;
 	right: 20px;
 	margin-top: -40px;
-=======
+
 	left: 55%;
 	top: 45%;
->>>>>>> 0bcb5a932cf2f070669caa4747aec59bc4cce0b1
 }
