@@ -11,5 +11,13 @@ class Game extends Controller {
 	function index () {
 		$this -> view -> render("game/index");
 	}
+	
+	function getDirections () {
+		$this -> model -> getDirections();
+	}
+	
+	function insert () {
+		$this -> model -> insert();
+	}
 
 }

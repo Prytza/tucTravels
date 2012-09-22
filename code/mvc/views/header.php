@@ -7,16 +7,14 @@
 	<script src="<?php echo URL; ?>public/js/jquery.js" type="text/javascript"></script>
 	<script src="<?php echo URL; ?>public/js/script.js" type="text/javascript"></script>
 	
-		<!--Här är julius data-->
+	<!--Här är julius data-->
 	<?php 
+	if (isset($this -> tags)) {
 	
-	// if (isset($this -> tags)) {
-	
-		// foreach ($this -> tags as $tag) {
-			// echo $tag . "\n	";
-		// }
-	
-	// }
+		foreach ($this -> tags as $tag) {
+			echo $tag . "\n	";
+		}
+	}
 	?>
 	<!--Julius data slut!-->
 	
