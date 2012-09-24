@@ -1,14 +1,26 @@
+function getCoords() {
+	$.getJSON("game/getDirections", function (data) {
+	// console.log(data[0].mobileID);
+	
+	$("#nord").text(data[0].nord);
+	$("#syd").text(data[0].syd);
+	$("#vast").text(data[0].vast);
+	$("#ost").text(data[0].ost);
+	
+	});
+	pageReloader();
+}
+
+function pageReloader() {
+		setTimeout(function(){
+			getCoords();
+		},200);
+}
+
 $(function () {
 
-	$.getJSON("game/getDirections", function (data) {
-		console.log(data[0].mobileID);
-		
-		$("#nord").append(data[0].nord);
-		$("#syd").append(data[0].syd);
-		$("#vast").append(data[0].vast);
-		$("#ost").append(data[0].ost);
-		
-	});
+	getCoords();
+
 
 	getLocation();
 	//initialize();

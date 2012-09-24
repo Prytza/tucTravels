@@ -38,7 +38,6 @@
 <body>
 <?php Session::init(); ?>
 <div id="header">
-Header<br />
 <a href="<?php echo URL; ?>index">Home</a>
 <a href="<?php echo URL; ?>game">Let's Play</a>
 <a href="<?php echo URL; ?>faq">FAQ</a>
@@ -51,10 +50,11 @@ Header<br />
       <a href="<?php echo $this -> fb_login["logoutUrl"]; ?>">Logout</a>
     <?php else: ?>
       <div>
-        Login using OAuth 2.0 handled by the PHP SDK:
-        <a href="<?php echo $this -> fb_login["loginUrl"]; ?>">Login with Facebook</a>
+        <a href="<?php echo $this -> fb_login["loginUrl"]; ?>"><div id="fb_login_logo"></div></a>
       </div>
     <?php endif ?>
+</div>
+<div id="drag_icon">
 </div>
 </div>
 <div id="content">
