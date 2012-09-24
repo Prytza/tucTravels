@@ -1,6 +1,29 @@
+
+function getCoords() {
+	$.getJSON("game/getDirections", function (data) {
+	// console.log(data[0].mobileID);
+	
+	$("#nord").text(data[0].nord);
+	$("#syd").text(data[0].syd);
+	$("#vast").text(data[0].vast);
+	$("#ost").text(data[0].ost);
+	
+	});
+	pageReloader();
+}
+
+function pageReloader() {
+		setTimeout(function(){
+			getCoords();
+		},200);
+}
+
 $(function () {
 
+	getCoords();
+
 	getLocation();
+	//initialize();
 	
 	//getMobilMove();
 	
@@ -9,58 +32,42 @@ $(function () {
 	
 	document.onkeydown = function(evt) {
 		evt = evt || window.event;
-
 		switch (evt.keyCode) {
-			case left:
-				leftKey=true;
-				arrowPressed(evt,left);
+			case 37:
+				//arrowPressed(evt,37);
+				leftArrowPressed(evt);
 				break;
-			case up:
-				upKey=true;
-				arrowPressed(evt,up);
+			case 38:
+				//arrowPressed(evt,38);
+				upArrowPressed(evt);
 				break;
-			case right:
-				rightKey=true;
-				arrowPressed(evt,right);
+			case 39:
+				//arrowPressed(evt,39);
+				rightArrowPressed(evt);
 				break;
-			case down:
-				downKey=true;
-				arrowPressed(evt,down);
+			case 40:
+				//arrowPressed(evt,40);
+				downArrowPressed(evt);
 				break;
+		/*	case 37 && 38:
+				arrowPressed(evt,3738);
+				break;
+			case 38 && 39:
+				arrowPressed(evt,3839);
+				break;
+			case 39 && 40:
+				arrowPressed(evt,3940);
+				break;
+			case 40 && 37:
+				arrowPressed(evt,4037);
+				break;		
+		*/
 		}
-		
 	};
 
-	document.onkeyup = function(evt) {
-		evt = evt || window.event;
-		switch (evt.keyCode) {
-			case left:
-				leftKey=false;
-				break;
-			case up:
-				upKey=false;
-				break;
-			case right:
-				rightKey=false;
-				break;
-			case down:
-				downKey=false;
-				break;
-		}
-
-	};
-		
 });
 
-	var left  = 37;
-	var up    = 38;
-	var right = 39;
-	var down  = 40;
-	
-	var moveDistans = 0.0001;
-	var leftKey, upKey, rightKey, downKey=false;
-
-	//	var mobilLat;
+//	var mobilLat;
 //	var mobilLng; 
 
 	var latStart; 
@@ -201,7 +208,8 @@ $(function () {
 		
 		map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
-	
+		//alert(22222);
+
 		/*markeringsikoner*/
 /*
 		var the_stores_logo = 'localhost/php/integration/gitTucTravel/tucTravels/code/mvc/public/js/helkoptercopy.png';
@@ -252,7 +260,8 @@ $(function () {
 		}
 		setMarkers(map, yourPosition, "Här är du!", points_where_you_are);
 	*/
-	};	
+	};
+	
 	
 	
 	/*Sätt ut markörer enligt koordinaterna*/
@@ -264,33 +273,54 @@ $(function () {
 			//icon: img
 		});
 			
+				//alert("hej");
+
 		/*Lägg till markering till kartan*/
 		marker.setMap(map);
-	
-	}
-	
-	function arrowPressed(event,keyNumber){
-	
-		event.preventDefault();	
-	
-		if(leftKey){//left
-			mobilLng = mobilLng - moveDistans;
-		}
-	
-		if(downKey){//down
-			mobilLat = mobilLat - moveDistans;
-		}
-		if(upKey){//up
-			mobilLat = mobilLat + moveDistans;
-		}
-		if(rightKey){//right
-			mobilLng = mobilLng + moveDistans;	
-		}
 		
-		getImage();
-		moveMap();
-
+		/*Det som ska hända när du klickar på en ikon*/
+	/*	google.maps.event.addListener(marker, "click", function() {
+			if (storeID) {
+				alert(storeID);
+				b = new Beer();
+				var listOfBeers = b.getBeers(storeID);
+				console.log(listOfBeers);
+			}
+		});
+		*/
 	}
+
+	function leftArrowPressed(event){
+		event.preventDefault();	
+		//alert("left");		
+		
+		mobilLng = mobilLng - 0.0001;
+		moveMap();
+	};		
+
+	function rightArrowPressed(event){
+
+		//alert("right");		
+		event.preventDefault();	
+		mobilLng = mobilLng + 0.0001;
+	//	alert(mobilLng);
+		moveMap();
+	};		
+
+	function upArrowPressed(event){
+	//alert("up");		
+		event.preventDefault();	
+		mobilLat = mobilLat + 0.0001;
+	//	alert(mobilLat);
+		moveMap();
+	};		
+
+	function downArrowPressed(event){
+	//alert("down");		
+		event.preventDefault();	
+		mobilLat = mobilLat - 0.0001;
+		moveMap();
+	};		
 	
 	
 	function getImage(){
@@ -322,40 +352,65 @@ $(function () {
 	
 	function getText(zon){
 		
+		var floor = Math.floor;
 
-		var zonCoordOne   = latEnd + ( 0.001 * zon);//öster om
-		var zonCoordTwo   = latEnd - ( 0.001 * zon);//väster om
-		var zonCoordThree = lngEnd + ( 0.001 * zon);//norr om
-		var zonCoordFour  = lngEnd - ( 0.001 * zon);//söder om
+	//avstånd mellan varje zon, 0.00068(lat/lng) och 0.000196(lat/lng) är ca 70 meter
+		//var changeTextLat = (latStart - latEnd) / 4;
+		//var changeTextLng = (lngStart - lngEnd) / 4;	
 	
+	//	if(changeTextLng < 0){
+	//		alert("mindre än noll...");
+	//	}
+	// var floor = Math.floor;
+	// var x = floor("1000.01")
+		/* alert(latEnd);
+		alert(lngEnd);
+	*/
 
+		var zonCoordOne = floor(latEnd)+ (0.0196 * zon);//öster om
+		var zonCoordTwo = latEnd - (0.0196 * zon);//väster om
+		var zonCoordThree = floor(lngEnd)+ (0.0068 * zon);//norr om
+		var zonCoordFour = lngEnd - (0.0068 * zon);//söder om
+	
+	/*	alert("mobilLat " + mobilLat +
+			 " mobilLng " + mobilLng + 
+			 " zonCoordOne " + zonCoordOne + 
+			 " zonCoordTwo " + zonCoordTwo 	+ 
+			 " zonCoordThree "+ zonCoordThree +  
+			 " zonCoordFour" + zonCoordFour 
+		);
+	*/
 		if( mobilLat < zonCoordOne &&  mobilLat > zonCoordTwo && mobilLng < zonCoordThree && mobilLng > zonCoordFour ){
 			
 	
 			if(zon == 4){
 			
-				texten = "Zon 4 en bit kvar";
+				texten = "Det är en bit kvar";
 			
 			}else if(zon == 3){
 				
-				texten = "Zon 3";
+				texten = "Ungefär halvvägs..";
 			
 			}else if(zon == 2){
 				
-				texten = " Zon 2 ";
+				texten = "Ganska nära nu.";
 			
 			}else if(zon == 1){
 				
-				texten = "Zon 1 ";
+				texten = "Det börjar brännas!";
 				
 			}else if(zon == 0.167){
 										
-				texten = "<strong style='color:#ff6633;'><strong>Nice, du klarade det!!</strong>";
+				texten = "<strong style='color:#ff6633;'><strong>Härligt, du klarade det!!</strong>";
 	
-			}	
+			}else{
+			
+				texten = "Ooups! Du är ganska långt ifrån...";
 	
-		}		
+			}
 		
+	
+		}
 		return texten;
 	};	
 

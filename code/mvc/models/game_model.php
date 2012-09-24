@@ -23,7 +23,7 @@ class Game_Model extends Model {
 	
 	public function getDirections () {
 	
-		$sth = $this->db->prepare('SELECT * FROM mobil');
+		$sth = $this->db->prepare('SELECT * FROM mobile WHERE mobileID = 5');
 		$sth->setFetchMode(PDO::FETCH_ASSOC);
 		$sth->execute();
 		$data = $sth->fetchAll();

@@ -65,7 +65,7 @@ function deviceMotionHandler3(eventData){
 $("#ajax").submit(function(e) {
 	$.ajax({
 		type: "POST",
-		url: "DBinput.php",
+		url: "mobile/setCoords",
 		data: $(e.target).serialize(),
 		dataType: "json",
 	});
