@@ -5,3 +5,5 @@
 
 define("URL", "http://localhost/INTEGRATION/Projektarbete/tucTravels/tucTravels/code/mvc/");
 //define("URL", "http://localhost/php/integration/gitTucTravel/tucTravels/code/mvc/");
+
+// define("URL", "http://integration.henryandersson.se/tuctravels/");

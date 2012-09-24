@@ -15,9 +15,5 @@ class Game extends Controller {
 	function getDirections () {
 		$this -> model -> getDirections();
 	}
-	
-	function insert () {
-		$this -> model -> insert();
-	}
 
 }

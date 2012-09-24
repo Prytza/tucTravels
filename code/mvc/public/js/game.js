@@ -1,7 +1,13 @@
 $(function () {
 
 	$.getJSON("game/getDirections", function (data) {
-		console.log(data);
+		console.log(data[0].mobileID);
+		
+		$("#nord").append(data[0].nord);
+		$("#syd").append(data[0].syd);
+		$("#vast").append(data[0].vast);
+		$("#ost").append(data[0].ost);
+		
 	});
 
 	getLocation();

@@ -1,43 +1,67 @@
 html {
-	height: 100%
+	height: 100%;	
+	background-color:#333;
 }
 
 body {
+	font-family: "Myriad Pro" ;
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	background: silver;
+	background: url(../images/bg.jpg);
 }
 
 #header {
-	background: gold;
+	text-align:center;
+	background: url(../images/bg.jpg);
 	padding: 20px;
+	position:fixed;
+	z-index:4;
+	top: 0;
+	height: 40px;
+	width: 100%;
+	box-shadow: 0.5px 0.5px 8px;
+	border-bottom: solid 3px #666;
 }
-
-#fb_login {
-	float: right;
+#header a{
+	text-decoration: none;	
+	color: white;
+	padding: 10px;
+}
+#header a:hover{
+	color: #666;
 }
 
 #content {
-	background: #fff;
 	padding: 20px;
 	position: relative;
+	box-shadow: 1px 1px 15px;
+	border-bottom: solid 4px #666;
+	background-color:#333;
+	height: 820px;
 }
 
 #footer {
 	background: green;
 	padding: 20px;
+	background: url(../images/bg.jpg);
+	color: #989898;
+	font-size: 12px;
+	text-align: center;
 }
 
 /*Game*/
 #map_wrapper {
-	height: 800px;
-	width: 800px;
+	top:-50;
+	height:860px;
+	width: 100%;
+	/*Här var height och width 800px innan jag pillade*/
 	margin: auto;
 	position:relative;
 }
 
 #map_canvas {
+	top:10;
 	height: 100%;
 	width: 100%;
 	position:relative;
@@ -55,4 +79,28 @@ body {
 	position: absolute;
 	left: 700px;
 	top: 600px;
+}
+
+/***********MENYEN*************/
+
+#drag_icon{
+	margin: 0 auto;
+	background: url(../images/drag_icon.png);
+	height: 21px;
+	margin-top: 25px;
+	width: 50px;
+	box-shadow: 0.5px 0.5px 8px;
+}
+
+#fb_login_logo{
+	width: 180px;
+	background: url(../images/fb_login.png);
+	background-repeat:no-repeat;
+	height: 25px;
+}	
+
+#fb_login {
+	position:fixed;
+	margin-top: -30px;
+	right: 50px;
 }

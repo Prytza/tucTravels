@@ -31,5 +31,10 @@ class Mobile extends Controller {
 	function index () {
 		$this -> view -> render("mobile/index");
 	}
+	
+	function setCoords () {
+		//behov?
+		$this -> model -> setCoords();
+	}
 
 }
