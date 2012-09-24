@@ -1,4 +1,4 @@
-$(function () {
+ï»¿$(function () {
 
 	getLocation();
 	
@@ -78,34 +78,36 @@ $(function () {
 	var lngStart = mobilLng;
 */
 	/*	
-	Systemet i linköping
+	Systemet i linkÃ¶ping
 	58.4105226, 15.6271606
 	*/
 /*	var latEnd= 58.4105226;
 	var lngEnd= 15.6271606;
 */
-//	var foundStores = []; // önskade uppgifter om butiker
+//	var foundStores = []; // Ã¶nskade uppgifter om butiker
 		
 	
 //	Koordinats Golden Thai
 	var latEnd = 58.035609;
 	var lngEnd = 14.976296;
 	/*
-	skäggetorp
+	skÃ¤ggetorp
 	58.4354436, 15.5882945
 
 	var latEnd= 58.4354436;
 	var lngEnd= 15.5882945;
 */	
 	var texten = "hmm...";
-	//avstånd mellan varje zon
+	//avstÃ¥nd mellan varje zon
 
-
+/*
+	
+	
 	function getMobilMove(){
 		$.getJSON("game/getDirections", function (data) {
 			console.log(data);
 			$.each(data,function(i, post){
-					//för varje inlägg skriver den ut en div
+					//fÃ¶r varje inlÃ¤gg skriver den ut en div
 				leftKey  = mobilMove(post.left);
 				upKey    = mobilMove(post.up);
 				rightKey = mobilMove(post.right);
@@ -115,11 +117,11 @@ $(function () {
 			
 		});
 
-		setTimeout(getMessage,200);//kör funktionen getMessage varje 
+		setTimeout(getMessage,200);//kÃ¶r funktionen getMessage varje 
 
 	};
 
-	
+*/	
 	function mobilMove(status){
 					
 		if(status==1){
@@ -133,7 +135,7 @@ $(function () {
 	
 	function getLocation(){
 
-		if (navigator.geolocation){//om det finns ett värde i navigator.geolocation
+		if (navigator.geolocation){//om det finns ett vÃ¤rde i navigator.geolocation
 
 			navigator.geolocation.getCurrentPosition(showPosition);
 
@@ -155,9 +157,9 @@ $(function () {
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
 	*/	
-		/*Hämtar uppgifter från systembevakningsagentens API*/
-		/*
-		$.getJSON("http://agent.nocrew.org/api/json/1.0/searchStore.json?callback=?", {
+		/*HÃ¤mtar uppgifter frÃ¥n systembevakningsagentens API*/
+
+/*		$.getJSON("http://agent.nocrew.org/api/json/1.0/searchStore.json?callback=?", {
 			"lat": latitude,
 			"lng": longitude,
 			"dist_km": "5",
@@ -179,17 +181,19 @@ $(function () {
 			});
 			
 			console.log(foundStores);
-			*/
-			/*När uppgifterna är hämtade -> skriv ut kartan*/
+
+			/*NÃ¤r uppgifterna Ã¤r hÃ¤mtade -> skriv ut kartan*/
+			
 			/*
 			var myLatlng = new google.maps.LatLng(latitude, longitude);
 			//printMap(myLatlng, "map_canvas");
 		});
-*/
+			*/
+	/*		
 			initialize();
 	
 	};
-
+*/
 	
 	//skapar kartan
 	function initialize() {
@@ -209,7 +213,7 @@ $(function () {
 		
 		var dist=500;
 	*/	
-		/*Loopa för att placera ut alla butiker*/
+		/*Loopa fÃ¶r att placera ut alla butiker*/
 /*		for (var i = 0; i < foundStores.length; i++) {
 			var theStoresLocation = new google.maps.LatLng(foundStores[i].lat, foundStores[i].lng);
 			setMarkers(map, theStoresLocation, foundStores[i].address, the_stores_logo, foundStores[i].id);
@@ -226,11 +230,11 @@ $(function () {
 				
 		}
 		
-		//setMarkers(map, yourPosition, "Här är du!", points_where_you_are);
-	*/
+		//setMarkers(map, yourPosition, "HÃ¤r Ã¤r du!", points_where_you_are);
+*/	
 	};
 
-	function printMap (yourPosition, mapContainer) {
+/*	function printMap (yourPosition, mapContainer) {
 			
 		var mapOptions = {
 			zoom: 10,
@@ -245,18 +249,18 @@ $(function () {
 		var the_stores_logo = 'helkoptercopy.png'
 		var points_where_you_are = 'helkoptercopy.png'
 		
-		/*Loopa för att placera ut alla butiker*/
-		/*for (var i = 0; i < foundStores.length; i++) {
+		/*Loopa fÃ¶r att placera ut alla butiker*/
+/*		for (var i = 0; i < foundStores.length; i++) {
 			var theStoresLocation = new google.maps.LatLng(foundStores[i].lat, foundStores[i].lng);
 			setMarkers(map, theStoresLocation, foundStores[i].address, the_stores_logo, foundStores[i].id);
 		}
-		setMarkers(map, yourPosition, "Här är du!", points_where_you_are);
-	*/
+		setMarkers(map, yourPosition, "HÃ¤r Ã¤r du!", points_where_you_are);
+	
 	};	
 	
 	
-	/*Sätt ut markörer enligt koordinaterna*/
-	function setMarkers (map, storeCoords, place, img, storeID = null) {	
+	/*SÃ¤tt ut markÃ¶rer enligt koordinaterna*/
+/*	function setMarkers (map, storeCoords, place, img, storeID = null) {	
 	
 		var marker = new google.maps.Marker({
 			position: storeCoords,
@@ -264,11 +268,11 @@ $(function () {
 			//icon: img
 		});
 			
-		/*Lägg till markering till kartan*/
-		marker.setMap(map);
+		/*LÃ¤gg till markering till kartan*/
+/*		marker.setMap(map);
 	
 	}
-	
+	*/
 	function arrowPressed(event,keyNumber){
 	
 		event.preventDefault();	
@@ -313,20 +317,19 @@ $(function () {
 			image="down";
 		}
 		
-		//sätta rätt namn på bilden i urlen 
-		//document.getElementById("helikopter").src="<?php echo URL; ?>public/images/" + image + ".gif";
-				
-		document.getElementById("helikopter").src="http://localhost/php/integration/gitTucTravel/tucTravels/code/mvc/public/images/" + image + ".gif";
+		//sÃ¤tta rÃ¤tt namn pÃ¥ bilden i urlen 
+		//id="helikopter"
+		//document.getElementById("helikopter").src="<?php echo URL; ?>public/images/"+ image + "Arrow.gif";
 	}
 	
 	
 	function getText(zon){
 		
 
-		var zonCoordOne   = latEnd + ( 0.001 * zon);//öster om
-		var zonCoordTwo   = latEnd - ( 0.001 * zon);//väster om
+		var zonCoordOne   = latEnd + ( 0.001 * zon);//Ã¶ster om
+		var zonCoordTwo   = latEnd - ( 0.001 * zon);//vÃ¤ster om
 		var zonCoordThree = lngEnd + ( 0.001 * zon);//norr om
-		var zonCoordFour  = lngEnd - ( 0.001 * zon);//söder om
+		var zonCoordFour  = lngEnd - ( 0.001 * zon);//sÃ¶der om
 	
 
 		if( mobilLat < zonCoordOne &&  mobilLat > zonCoordTwo && mobilLng < zonCoordThree && mobilLng > zonCoordFour ){

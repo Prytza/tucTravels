@@ -40,7 +40,8 @@
 <div id="header">
 Header<br />
 <a href="<?php echo URL; ?>index">Home</a>
-<a href="<?php echo URL; ?>game">Let's Play</a>
+<a href="<?php echo URL; ?>game">Let's Play - Golden Thai</a>
+<a href="<?php echo URL; ?>gameSystembolaget">Let's Play - Systembolaget</a>
 <a href="<?php echo URL; ?>faq">FAQ</a>
 <?php if (Session::get("loggedIn") == true): ?>
 <a href="<?php echo URL; ?>myprofile">My Profile</a>
