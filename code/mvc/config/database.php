@@ -1,6 +1,7 @@
 <?php
 
 define("DB_TYPE", "mysql");
+// define("DB_HOST", "tuc-travels-142080.mysql.binero.se");
 define("DB_HOST", "localhost:9999");
 define("DB_NAME", "142080-tuc-travels");
 define("DB_USER", "142080_jj39999");

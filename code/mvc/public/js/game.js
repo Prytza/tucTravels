@@ -1,3 +1,5 @@
+
+
 function getCoords() {
 	$.getJSON("game/getDirections", function (data) {
 	// console.log(data[0].mobileID);
