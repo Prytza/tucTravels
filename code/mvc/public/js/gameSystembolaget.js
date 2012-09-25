@@ -104,19 +104,6 @@
 				
 	};
 					
-	
-	// function getLocation(){
-	
-		// if (navigator.geolocation){//om det finns ett värde i navigator.geolocation
-
-			// navigator.geolocation.getCurrentPosition(showPosition);
-
-// //			}else{
-	
-// //				x.innerHTML="Geolocation is not supported by this browser.";
-		
-		// }
-	// };
 
 	function showPosition(position){
 
@@ -141,7 +128,7 @@
 			$.each(data.items, function (key, value) {
 			
 				foundStores[key] = [];
-		
+		//alert('key>>' + key);
 				foundStores[key]["id"] = value.id;
 				foundStores[key]["sysid"] = value.sysid;
 				foundStores[key]["lat"] = value.lat;
@@ -176,23 +163,26 @@
 	
 		/*markeringsikoner*/
 
-	//	var the_stores_logo = 'http://localhost/php/integration/gitTucTravel/tucTravels/code/mvc/public/images/logo_systembolaget.png';
+		var the_stores_logo = 'http://localhost/php/integration/gitTucTravel/tucTravels/code/mvc/public/images/logo_systembolaget.png';
 	//	var points_where_you_are = 'lean.gif';
 		
 		var dist=500;
 		
 //både zonerna och markeringen fungerar inte utan alerten!!??		
-alert('lycka till på spelet');
+//alert('lycka till på spelet');
+alert('här' + foundStores.length);
 
 		/*Loopa för att placera ut alla butiker*/
-		for (var i = 0; i < foundStores.length; i++) {
-			
+		for (var i = 0; i <= foundStores.length; i++) {
+
 			var theStoresLocation = new google.maps.LatLng(foundStores[i].lat, foundStores[i].lng);
 			//setMarkers(map, theStoresLocation, foundStores[i].address, the_stores_logo, foundStores[i].id);
 			setMarkers(map, theStoresLocation, foundStores[i].address, foundStores[i].id);
 
+			
 			if(dist > foundStores[i].dist_km){
-				dist = foundStores[i].dist_km;
+alert('här inne' +foundStores[i].dist_km);
+			dist = foundStores[i].dist_km;
 				latEnd = parseFloat(foundStores[i].lat);
 				lngEnd = parseFloat(foundStores[i].lng);
 			}	
@@ -201,121 +191,36 @@ alert('lycka till på spelet');
 		
 	};
 	
-	/*Sätt ut markörer enligt koordinaterna*/
-	//function setMarkers (map, storeCoords, place, img, storeID = null) {	
 	
-	// function setMarkers (map, storeCoords, place, storeID = null) {	
-	
-		// var marker = new google.maps.Marker({
-			// position: storeCoords,
-			// title: place,
-			// //icon: img
-		// });
-			
-		// /*Lägg till markering till kartan*/
-		// marker.setMap(map);
-	
-	// }
+	//-------------  FUNKTIONER  ---------------------//
 
-	// function arrowPressed(event,keyNumber){
-	
-		// event.preventDefault();	
-	
-		// if(leftKey){//left
-			// mobilLng = mobilLng - moveDistans;
-		// }
-	
-		// if(downKey){//down
-			// mobilLat = mobilLat - moveDistans;
-		// }
-		// if(upKey){//up
-			// mobilLat = mobilLat + moveDistans;
-		// }
-		// if(rightKey){//right
-			// mobilLng = mobilLng + moveDistans;	
-		// }
+	//------ Henrys kod start ------///
 		
-		// getImage();
-		// moveMap();
+	function getCoords() {
+	
+		$.getJSON("game/getDirections", function (data) {
+		 console.log(data[0].mobileID);
+	
+		$("#nord").text(data[0].nord);
+		$("#syd").text(data[0].syd);
+		$("#vast").text(data[0].vast);
+		$("#ost").text(data[0].ost);
+		
+		leftKey	= mobilMove(data[0].nord);
+		upKey	= mobilMove(data[0].syd);
+		rightKey= mobilMove(data[0].vast);
+		downKey = mobilMove(data[0].ost);
+		
+//alert(leftKey + ' ' + upKey + ' ' + rightKey + ' ' + downKey);
+		
+		});
+		pageReloader();
+	}
 
-	// }
-	
-	
-	// function getImage(){
-		
-		// if(leftKey && upKey){
-			// image="leftup";
-		// }else if(leftKey && downKey){
-			// image="leftdown";
-		// }else if(rightKey && upKey){
-			// image="rightup";
-		// }else if(rightKey && downKey){
-			// image="rightdown";
-		// }else if(leftKey){
-			// image="left";
-		// }else if(rightKey){
-			// image="right";
-		// }else if(upKey){
-			// image="up";
-		// }else if(downKey){
-			// image="down";
-		// }
-		
-		// //sätta rätt namn på bilden i urlen 
-		// //document.getElementById("helikopter").src="<?php echo URL; ?>public/images/"+ image + "Arrow.gif";
-		// document.getElementById("helikopter").src="http://localhost/php/integration/gitTucTravel/tucTravels/code/mvc/public/images/" + image + ".gif";
+	function pageReloader() {
+		var mobilTimer=	setTimeout(	function(){
+										getCoords();
+									},200);
+	}
 
-	// }
-	
-	
-	// function getText(zon){		
-
-		// var zonCoordOne   = parseFloat(latEnd + ( zonDistans * zon));//öster om
-		// var zonCoordTwo   = parseFloat(latEnd - ( zonDistans * zon));//väster om
-		// var zonCoordThree = parseFloat(lngEnd + ( zonDistans * zon));//norr om
-		// var zonCoordFour  = parseFloat(lngEnd - ( zonDistans * zon));//söder om
-		
-		// if( mobilLat < zonCoordOne &&  mobilLat > zonCoordTwo && mobilLng < zonCoordThree && mobilLng > zonCoordFour ){
-	
-			// if(zon == 4){
-				// text = "Zon 4 en bit kvar";
-			
-			// }else if(zon == 3){
-				
-				// text = "Zon 3";
-			
-			// }else if(zon == 2){
-				
-				// text = " Zon 2 ";
-			
-			// }else if(zon == 1){
-				
-				// text = "Zon 1 ";
-				
-			// }else if(zon == 0.167){
-										
-				// text = "<strong style='color:#ff6633;'><strong>Nice, du klarade det!!</strong>";
-	
-			// }	
-	
-		// }		
-		
-		// return text;
-	// };	
-
-
-	// function moveMap(){	
-	
-		// text = getText(4);
-		// text = getText(3);
-		// text = getText(2);
-		// text = getText(1);
-		// text = getText(0.167);
-	
-		// document.getElementById('message').innerHTML = text;
-	
-		// var latLng = new google.maps.LatLng(mobilLat, mobilLng);
-		
-		// map.panTo(latLng);
-	
-	// };
+//------ Henrys kod slut ------///

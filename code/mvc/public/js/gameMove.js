@@ -87,26 +87,23 @@ function getImage(){
 		var zonCoordThree = parseFloat(lngEnd + ( zonDistans * zon));//norr om
 		var zonCoordFour  = parseFloat(lngEnd - ( zonDistans * zon));//söder om
 		
-		// var zonCoordOne = latEnd + ( 0.001 * zon);//öster om
-		// var zonCoordTwo = latEnd - ( 0.001 * zon);//väster om
-		// var zonCoordThree = lngEnd + ( 0.001 * zon);//norr om
-		// var zonCoordFour = lngEnd - ( 0.001 * zon);//söder om
-
+	
 		parseFloat(mobilLat);
 		parseFloat(mobilLng);
 
-		alert(	'lat -->' + mobilLat + 
-		' One -->' + zonCoordOne +
-		' lng -->' + mobilLng +
-		' Three -->' + zonCoordThree)
+		// alert(	'lat -->' + mobilLat + 
+		// ' One -->' + zonCoordOne +
+		// ' lng -->' + mobilLng +
+		// ' Three -->' + zonCoordThree)
 		
-		if( mobilLat < zonCoordOne ){alert('inne 1');}
+		//if( mobilLat < zonCoordOne ){alert('inne 1');}
 		//if( mobilLat > zonCoordTwo ){alert('inne 2');}
-		if( mobilLng < zonCoordThree ){alert('inne 3');} 
+		//if( mobilLng < zonCoordThree ){alert('inne 3');} 
 		//if( mobilLng > zonCoordFour ){alert('inne 4');}
+		
 		if( mobilLat < zonCoordOne && mobilLat > zonCoordTwo && mobilLng < zonCoordThree && mobilLng > zonCoordFour ){
 
-		alert(mobilLat + ' <-inne i if OVANLIGT-> ' + mobilLng);
+		//alert(mobilLat + ' <-inne i if OVANLIGT-> ' + mobilLng);
 
 			if(zon == 4){
 

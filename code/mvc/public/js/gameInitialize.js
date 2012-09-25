@@ -29,6 +29,8 @@ function printMap (yourPosition, mapContainer) {
 /*Sätt ut markörer enligt koordinaterna*/
 function setMarkers (map, storeCoords, place, img, storeID = null) {	
 
+//function setMarkers (map, storeCoords, place, storeID = null) {	
+
 	var marker = new google.maps.Marker({
 		position: storeCoords,
 		title: place,

@@ -39,16 +39,7 @@ $(function () {
 		}
 
 	};
-/*
-	$('#target').keyup(function(event) {
-   
-   }).keydown(function(event) {
-  if (event.which == 13) {
-    event.preventDefault();
-  
-  }  
-});
-*/
+
 
 
 	document.onkeyup = function(evt) {
