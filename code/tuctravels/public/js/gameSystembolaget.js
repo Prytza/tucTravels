@@ -145,9 +145,9 @@
 			
 			var myLatlng = new google.maps.LatLng(latitude, longitude);
 			//printMap(myLatlng, "map_canvas");
-			alert('här i showpos rfunction data ' + foundStores.length);
+			alert('här i showpos rfunction data ' + foundStores.length);//3
 		});
-		alert('här i showpos ' + foundStores.length);
+		alert('här i showpos ' + foundStores.length);//0
 		initialize();
 	
 	};
@@ -171,18 +171,18 @@
 		
 //både zonerna och markeringen fungerar inte utan alerten!!??		
 //alert('lycka till på spelet');
-alert('här i init' + foundStores.length);
+alert('här i init' + foundStores.length); //3
 
 		/*Loopa för att placera ut alla butiker*/
 		for (var i = 0; i <= foundStores.length; i++) {
-alert('här i init i forloopen ' + foundStores.length);
+alert('här i init i forloopen ' + foundStores.length);//3
 			var theStoresLocation = new google.maps.LatLng(foundStores[i].lat, foundStores[i].lng);
 			//setMarkers(map, theStoresLocation, foundStores[i].address, the_stores_logo, foundStores[i].id);
 			setMarkers(map, theStoresLocation, foundStores[i].address, foundStores[i].id);
 
 			
 			if(dist > foundStores[i].dist_km){
-alert('här inne' +foundStores[i].dist_km);
+alert('här inne' +foundStores[i].dist_km);//3,69
 			dist = foundStores[i].dist_km;
 				latEnd = parseFloat(foundStores[i].lat);
 				lngEnd = parseFloat(foundStores[i].lng);
