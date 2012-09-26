@@ -1,6 +1,6 @@
 $(function () {
 
-	//getCoords();
+	getCoords();
 	//getMobilMove();
 	//http://integration.henryandersson.se/tuctravels/mobile
 
