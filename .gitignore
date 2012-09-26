@@ -3,6 +3,10 @@
 # Can ignore specific files
 # .DS_Store
 
+.api.keys.php
+.database.php
+.paths.php
+
 # Use wildcards as well
 # *~
 # *.swp
