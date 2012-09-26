@@ -62,26 +62,46 @@ function deviceMotionHandler3(eventData){
 	$('#right').val(right);
 }
 
+	var url = document.URL;
+	var i = url.indexOf("tuctravels");
+	url = url.substring(0, i+11);
+	console.log(url);
+
 $("#ajax").submit(function(e) {
 	$.ajax({
 		type: "POST",
-		url: "mobile/setCoords",
+		url: url + "mobile/setCoords",
 		data: $(e.target).serialize(),
 		dataType: "json",
 	});
 	return false;
 });
 
+var timer;
+
 function autosubmit()
 {
     $('#ajax').trigger('submit');
-    setTimeout('autosubmit()', 200);
+    timer = setTimeout('autosubmit()', 1000); // anpassa frekvens..
 }
 
 $(document).ready(function(e) {
-    autosubmit();
-});
 
-$('#activate').click(function(){
-	$('#activate').css('background', 'url(../img/deactivate.png)');
+	
+	var imgUrlPath = url + "public/images/";
+	var active = false;
+	
+	$('#activate').click(function(){
+		if (!active) {
+			autosubmit();
+			$(this).css('background', 'url(' + imgUrlPath +'deactivate.png)');
+			active = true;
+		}
+		else {
+			clearTimeout(timer);
+			$(this).css('background', 'url(' + imgUrlPath +'activate.png)');
+			active = false;
+		}
+	});
+
 });

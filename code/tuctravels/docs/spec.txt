@@ -1,0 +1,20 @@
+Inloggning:
+
+En användare måste vara inloggad för att kunna spela.
+När användaren är inloggad får man välja om man vill spela med tangent-
+bordet eller via sin mobiltelefon.
+Vill man spela med mobiltelefonen som "joystick" ska man kunna hämta
+applikationen genom en QR-kod.
+
+Tekniskt spec.
+Om användaren är inloggad -> game/user/123456 annars bara game/
+Om bara game -> visa hänvisning till att logga in.
+Om game/user/123456 -> visa val av att spela med tangentbord eller QR-kod
+för att ta sig till mobilappen.
+Om game/user/123456 -> finns facebookID redan i databasen
+(man har spelat förut) -> UPDATE current position, active = 1
+Om game/user/123456 -> facebookID finns inte i databasen ->
+(man har inte spelat tidigare) -> INSERT INTO ...
+
+
+Hur hålla reda på vem som spelar från en mobil?

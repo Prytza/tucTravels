@@ -8,6 +8,7 @@ class Controller {
 		
 		//Oavsätt vilken sida man är på hämtas uppgifter om man är inloggad eller ej
 		require("models/facebook_model.php");
+		
 		$this -> view -> fb_login = Facebook_Model::facebook();
 
 	}

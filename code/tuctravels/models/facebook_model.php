@@ -1,6 +1,9 @@
-<?php
+ï»¿<?php
 
 class Facebook_Model extends Model {
+
+	// public static $fb_login = array();
+	//public static $nummer = self::facebook;
 
 	function __construct() {
 		parent::__construct();
@@ -19,7 +22,7 @@ class Facebook_Model extends Model {
 		// Get User ID
 		$user = $facebook->getUser();
 		
-		// initierar övriga objekt för att kunna returnera en array.
+		// initierar Ã¶vriga objekt fÃ¶r att kunna returnera en array.
 		$user_profile = array();
 		$loginUrl = "";
 		$logoutUrl = "";
@@ -48,7 +51,7 @@ class Facebook_Model extends Model {
 		} else {
 		  $loginUrl = $facebook->getLoginUrl(array(
 													'scope' => 'read_stream, friends_likes',
-													'redirect_uri' => URL . 'login'
+													'redirect_uri' => URL . 'mobile'
 												  ));
 		}
 		
@@ -58,36 +61,66 @@ class Facebook_Model extends Model {
 						  "logoutUrl" => $logoutUrl
 						 );
 		
-		// Så länge vi inte vet hur man hanterar fb:s egna session så skapar vi en
-		// egen som kontrollerar om man är inloggad eller ej.
-		Session::init();
-		Session::set("loggedIn", true);
-		
 		return $fb_login;
 	}
 	
-		// public function run () {
+	function checkIfUserExist ($user) {
+	
+		$lng = 1.11;
+		$lat = 2.22;
+		$active = 1;
+	
+		$sth = $this -> db -> prepare("SELECT * FROM user WHERE
+			facebookID = :facebookID");
 		
-		// $sth = $this -> db -> prepare("SELECT usersID FROM users WHERE
-			// username = :username AND password = :password");
+		$sth -> execute(array(
+			':facebookID' => $user
+		));
+	
+		$count = $sth -> rowCount();
+		if ($count > 0) {
+			$this -> updateExistingUser($user, $lng, $lat, $active);
+			echo "<br /><br />trÃ¤ff!";
+		}
+		else {
+			$this -> regNewUser($user, $lng, $lat, $active);
+			echo "<br /><br />miss!";
+		}
 		
-		// $sth -> execute(array(
-			// ':username' => $_POST["username"],
-			// ':password' => $_POST["password"]
-		// ));
+	}
+	
+	public function regNewUser($user, $lng, $lat, $active) {
+	
+		$query = 'INSERT INTO user (facebookID, currentLng, currentLat, active) VALUES (:fbID, :lng, :lat, :active)';
 		
-		// //$data = $sth -> fetchAll();
+		$sth = $this->db->prepare($query);
 		
-		// $count = $sth -> rowCount();
-		// if ($count > 0) {
-			// Session::init();
-			// Session::set("loggedIn", true);
-			// header("location: ../dashboard");
-		// }
-		// else {
-			// header("location: ../login");
-		// }
+		$statements = array(
+				':fbID' => $user,
+				':lng' => $lng,
+				':lat' => $lat,
+				':active' => $active
+		);
 		
-	// }
+		$sth->execute($statements);	
+	
+	}
+	
+	function updateExistingUser ($user, $lng, $lat, $active) {
+	
+		$query = 'UPDATE user SET currentLng=:lng, currentLat=:lat, active=:active WHERE facebookID=:fbID';
+		
+		$sth = $this->db->prepare($query);
+		
+		$statements = array(
+				':lng' => $lng,
+				':lat' => $lat,
+				':active' => 0, // $active,
+				':fbID' => $user
+		);
+		
+		$result=$sth->execute($statements);	
+	
+	}
 
 }

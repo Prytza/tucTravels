@@ -36,14 +36,14 @@
 	
 </head>
 <body>
-<?php Session::init(); ?>
 <div id="header">
 Header<br />
+
 <a href="<?php echo URL; ?>index">Home</a>
-<a href="<?php echo URL; ?>game">Let's Play - Golden Thai</a>
+<a href="<?php echo URL; ?>game/<?php echo (isset($this ->fb_login["user"]) && $this ->fb_login["user"] != 0) ? "user/" . $this -> fb_login["user"] : ""; ?>">Let's Play - Golden Thai</a>
 <a href="<?php echo URL; ?>gameSystembolaget">Let's Play - Systembolaget</a>
 <a href="<?php echo URL; ?>faq">FAQ</a>
-<?php if (Session::get("loggedIn") == true): ?>
+<?php if (isset($this ->fb_login["user"]) && $this ->fb_login["user"] != 0) : ?>
 <a href="<?php echo URL; ?>myprofile">My Profile</a>
 <?php endif; ?>
 
@@ -52,10 +52,10 @@ Header<br />
       <a href="<?php echo $this -> fb_login["logoutUrl"]; ?>">Logout</a>
     <?php else: ?>
       <div>
-        Login using OAuth 2.0 handled by the PHP SDK:
         <a href="<?php echo $this -> fb_login["loginUrl"]; ?>">Login with Facebook</a>
       </div>
     <?php endif ?>
 </div>
 </div>
-<div id="content">
+
+	<div id="content">

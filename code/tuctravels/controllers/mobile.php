@@ -25,16 +25,42 @@ class Mobile extends Controller {
 	// <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript">
 	// </script>
 		
-		$this -> view -> js = array("mobile");
+		// mobile.js finns inte.. har den funnits? :)
+		//$this -> view -> js = array("mobile");
 	}
 	
 	function index () {
-		$this -> view -> render("mobile/index");
+	
+		// kommer inte behövas sen..?
+	
+		Session::init();
+		$facebookID = Session::get("fb_491121290898123_user_id");
+		
+		if ($facebookID) {
+			$REST = URL . 'mobile/user/'. $facebookID . '/';		
+			header('location:' . $REST);
+		}
+		else {
+			$this -> view -> render("mobile/index");
+		}
+		
 	}
 	
 	function setCoords () {
-		//behov?
+	
 		$this -> model -> setCoords();
+	}
+	
+	function user ($user = false) {
+			
+		$this -> view -> render("mobile/index");
+	
+	}
+	
+	function sendUserInfoFromMobile () {
+	
+		$this -> model -> sendUserInfoFromMobile();
+	
 	}
 
 }

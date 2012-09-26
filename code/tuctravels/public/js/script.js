@@ -21,4 +21,15 @@ $(document).ready( function () {
 		}
 		$(this).animate({top: top});	
 	});
+	
+	$('#sidebar').css('right', -200);
+	
+	$('#sidebar').click(function(){	
+		if($(this).css('right') == "0px"){
+			right = -200;
+		}else{
+			right = 0;	
+		}
+		$(this).animate({right: right});	
+	});
 });

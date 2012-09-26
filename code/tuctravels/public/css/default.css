@@ -5,6 +5,7 @@ html {
 
 body {
 	font-family: "Myriad Pro" ;
+	color: #fff;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -39,6 +40,25 @@ body {
 	border-bottom: solid 4px #666;
 	background-color:#333;
 	height: 820px;
+}
+
+#sidebar {
+	width: 230px;
+	height: 300px;
+	background: url(../images/green_arrow.png) 0px 130px no-repeat;
+	position: fixed;
+	top: 87px;
+	right: 0px;
+}
+
+#sidebarContent {
+	width: 200px;
+	background-color: #80a637;
+	color: #000;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 300px;
 }
 
 #footer {
@@ -79,6 +99,14 @@ body {
 	position: absolute;
 	left: 700px;
 	top: 600px;
+}
+
+.game_choice_frame {
+	width: 300px;
+	height: 300px;
+	border: 1px solid #ccc;
+	margin: auto;
+	text-align: center;
 }
 
 /***********MENYEN*************/

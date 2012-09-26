@@ -27,7 +27,7 @@ class Login extends Controller {
 		Session::init();
 		Session::destroy();
 
-		header("location: " . URL . "login");
+		header("location: " . URL);
 		exit;
 	}
 
