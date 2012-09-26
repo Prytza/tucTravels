@@ -76,6 +76,7 @@
 
 	var text = "hmm...";
 	
+	//------------ hämta telefon/Ipad rörelser  ---------------//
 	function getMobilMove(){
 		$.getJSON("game/getDirections", function (data) {
 			console.log(data);
@@ -90,10 +91,11 @@
 			
 		});
 
-		setTimeout(getMessage,200);//kör funktionen getMessage varje 
+		setTimeout(getMobilMove,200);//kör funktionen getMessage varje 
 
 	};
-
+	//--------------------slut telefon/Ipad rörelser --------------//
+	
 	function mobilMove(status){
 					
 		if(status==1){
@@ -136,7 +138,7 @@
 				foundStores[key]["address"] = value.address;
 				foundStores[key]["city"] = value.city;
 				foundStores[key]["dist_km"] = value.dist_km;	
-				
+	alert('i showposition och eachfunktionen '  + foundStores.length);			
 			});
 			
 			console.log(foundStores);
@@ -146,7 +148,7 @@
 			var myLatlng = new google.maps.LatLng(latitude, longitude);
 			//printMap(myLatlng, "map_canvas");
 		});
-		
+alert('i showposition ' + foundStores.length);		
 		initialize();
 	
 	};
@@ -170,10 +172,11 @@
 		
 //både zonerna och markeringen fungerar inte utan alerten!!??		
 //alert('lycka till på spelet');
-alert('här' + foundStores.length);
+
+alert('här i initialize ' + foundStores.length);
 
 		/*Loopa för att placera ut alla butiker*/
-		for (var i = 0; i <= foundStores.length; i++) {
+		for (var i = 0; i <foundStores.length; i++) {
 
 			var theStoresLocation = new google.maps.LatLng(foundStores[i].lat, foundStores[i].lng);
 			//setMarkers(map, theStoresLocation, foundStores[i].address, the_stores_logo, foundStores[i].id);
@@ -182,7 +185,7 @@ alert('här' + foundStores.length);
 			
 			if(dist > foundStores[i].dist_km){
 alert('här inne' +foundStores[i].dist_km);
-			dist = foundStores[i].dist_km;
+				dist = foundStores[i].dist_km;
 				latEnd = parseFloat(foundStores[i].lat);
 				lngEnd = parseFloat(foundStores[i].lng);
 			}	
