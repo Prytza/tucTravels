@@ -1,3 +1,9 @@
+	var url = document.URL;
+	var i = url.indexOf("tuctravels");
+	
+	url = url.substring(0, i+11);
+	console.log(url);
+
 $(document).ready( function () {
 	
 	/* Meny */

@@ -1,12 +1,6 @@
 ﻿<script>
 	$(function() {
 	
-		var url = document.URL;
-		var i = url.indexOf("tuctravels");
-		
-		url = url.substring(0, i+11);
-		console.log(url);
-	
 		$.getJSON(url + 'game/getInloggedUsers', function(data) {
 
 		  $.each(data, function(key, val) {
