@@ -1,3 +1,5 @@
+//sätter rätt bild beroende på vilken färdriktning man åker i
+var image='down';
 
 function getImage(){
 		
@@ -27,7 +29,7 @@ function getImage(){
 	document.getElementById("helikopter").src="http://localhost/php/integration/gitTucTravel/tucTravels/code/tuctravels/public/images/" + image + ".gif";
 }
 
-
+//flyttar på kartan 
 	function moveMap(){	
 
 		text = getText(4);
@@ -39,14 +41,25 @@ function getImage(){
 		document.getElementById('message').innerHTML = text;
 	
 		var latLng = new google.maps.LatLng(mobilLat, mobilLng);
-	//	map = new google.maps.LatLng(mobilLat, mobilLng);
 		
+		//googles färdiga funktion för att förflytta sig till de koordinater man vill till
 		map.panTo(latLng);
-		//map.panTo(map);
+
 	
 	};
+		
+
+	//avstånd mellan varje zon
+	var zonDistans = 0.001;
+
+	//texten vid helekoptern	
+	var text = "hmm...";
 	
-		function getText(zon){
+	//sätts till false vid avklarad uppgift
+	var getDirectionStatus=true;
+
+//hämtar texten, beroende på avstånd ifrån målet
+	function getText(zon){
 		
 		parseFloat(latEnd);
 		parseFloat(lngEnd);
@@ -67,7 +80,7 @@ function getImage(){
 	
 			if(zon == 4){
 
-				text = "Zon 4 en bit kvar";
+				text = "Zon 4";
 
 			}else if(zon == 3){
 
@@ -83,7 +96,7 @@ function getImage(){
 
 			}else if(zon == 0.167){
 
-				text = "<strong style='color:#ff6633;'><strong>Nice, du klarade det!!</strong>";
+				text = "<span id='gameFinished'>Nice, du klarade det!!</span>";
 				getDirectionStatus=false;
 			}	
 
@@ -92,6 +105,13 @@ function getImage(){
 		return text;
 	};	
 	
+	//pilarnas värde
+	var left  = 37;
+	var up    = 38;
+	var right = 39;
+	var down  = 40;
+	
+	//ändrar på värdet på respektive knapp när man trycker ner knappen
 		function keyStatusDown(evt){
 		
 			evt = evt || window.event;
@@ -114,10 +134,11 @@ function getImage(){
 					evt.preventDefault();	
 					break;
 			}
+			//flyttar på kartan
 			mobilMoved();
 		}
 
-		
+	//ändrar på värdet på respektive knapp när man släpper knappen	
 		function keyStatusUp(evt){
 
 			evt = evt || window.event;
@@ -138,9 +159,11 @@ function getImage(){
 		}
 	
 		
-	//när kordinater från mobilen ändras
+	//när kordinater från mobilen ändras eller man tryckt på en pil
 function mobilMoved(){
 				
+	//avståndet som sker per knapptryckning
+	var moveDistans = 0.0001;
 	
 	
 	if(leftKey){//left

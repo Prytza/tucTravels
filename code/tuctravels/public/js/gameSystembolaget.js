@@ -1,78 +1,49 @@
 ﻿$(function () {
 	
-	getLocation();
+	$.post(url + 'mobile/setCoords', {
+			left: 0,
+			up: 0,
+			right: 0,
+			down:0
+		}, function(data) {
+		  console.log(data);
+		});	
+	
+	
 
+	//hämtar din nuvarande posistion och skriver ut kartan med markeringarna	
+	getLocation();
+	
+	//hämtar rörelserna från telefonen eller Ipaden
 	getCoords();
 	
+	//Nedräkningen på 40 sekunder
+	CreateTimer("timer", 40);	
+	
 	document.onkeydown = function(evt) {
-		
-		startTimer=true;
+		//när användaren trycker på knappen, ändra status på färdriktning
 		keyStatusDown(evt);		
-			
 	};
 	
 	document.onkeyup = function(evt) {
-
+		//ändrar status på knapparna
 		keyStatusUp(evt);
 
 	};
-	//console.log(startTimer);
-	//if(startTimer){
-		CreateTimer("timer", 30);
-//	}
-	
 		
 });
+		
+//----- hämtar koordinater från skärmens plats ------//
+//-- med koordinaterna för systembolagen  -- //
 
-//------ Varibler start ------///
-
-	//pilarnas värde
-	var left  = 37;
-	var up    = 38;
-	var right = 39;
-	var down  = 40;
-	
-	//avståndet som sker per knapptryckning
-	var moveDistans = 0.0001;
-
-	//avstånd mellan varje zon
-	var zonDistans = 0.001;
-	//sätter varje pil knapp till false
-	var leftKey, upKey, rightKey, downKey=false;
-	
 	//helekopterns posistioner
 	var mobilLat;
 	var mobilLng; 
-
-	var map;
-	var image='down';
 	
 	//systembolaget/ns värde/n
 	var foundStores = []; // önskade uppgifter om butiker
-	
-	//slutmålet för helekoptern
-	var latEnd;
-	var lngEnd;
-
-	//texten vid helekoptern	
-	var text = "hmm...";
-	
-	//sätts till false vid avklarad uppgift
-	var getDirectionStatus=true;
-	
-	var startTimer=false;
-	var Timer;
-	var TotalSeconds;
-	
-	
-	
-	//------ Varibler slut ------///
-	
-	//-------------  FUNKTIONER START ---------------------//
 
 	
-//----- hämtar koordinater från skärmens plats ------//
-//-- med koordinaterna för systembolagen  -- //	
 	function showPosition(position){
 
 		mobilLat = parseFloat(position.coords.latitude);
@@ -118,7 +89,14 @@
 	
 	
 	//---- skapar kartan ---//
+	
+	var map;
 
+	//slutmålet för helekoptern
+	var latEnd;
+	var lngEnd;
+
+	
 	function initialize() {
 		var mapOptions = {
 			center: new google.maps.LatLng(latStart, lngStart),
@@ -143,6 +121,7 @@
 			
 			if(dist > foundStores[i].dist_km){
 				dist = foundStores[i].dist_km;
+				//sätter slutmålet på spelet
 				latEnd = parseFloat(foundStores[i].lat);
 				lngEnd = parseFloat(foundStores[i].lng);
 			}	
@@ -152,6 +131,10 @@
 	};
 	
 	//------ hämta data från mobil/Ipad databasen ------///
+	
+	//sätter varje pil knapp till false
+	var leftKey, upKey, rightKey, downKey=false;
+	
 		
 	function getCoords() {
 	
@@ -176,10 +159,7 @@
 	function mobilMoveStatus(status){					
 
 		if(status==1){
-			
-			startTimer=true;
 			return true;
-			
 		}else{
 			return false;
 		}

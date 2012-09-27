@@ -28,7 +28,7 @@ class Mobile_Model extends Model {
 		);
 		
 		$result=$sth->execute($statements);
-	
+			
 	}
 	
 	function sendUserInfoFromMobile () {

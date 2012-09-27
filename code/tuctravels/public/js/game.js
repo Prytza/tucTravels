@@ -26,7 +26,6 @@ $(function () {
 	var right = 39;
 	var down = 40;
 
-	var moveDistans = 0.0001;
 		//avstånd mellan varje zon
 	var zonDistans = 0.001;
 	var leftKey=false;
