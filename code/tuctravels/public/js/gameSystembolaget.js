@@ -1,110 +1,78 @@
 ﻿$(function () {
 	
 	getLocation();
-	//getMobilMove();
-	//http://integration.henryandersson.se/tuctravels/mobile
 
-	var helikopter = $("#helikopter");
-	helikopter.css("zIndex", 10);
+	getCoords();
 	
 	document.onkeydown = function(evt) {
-		evt = evt || window.event;
-
-		switch (evt.keyCode) {
-			case left:
-				leftKey=true;
-				arrowPressed(evt,left);
-				break;
-			case up:
-				upKey=true;
-				arrowPressed(evt,up);
-				break;
-			case right:
-				rightKey=true;
-				arrowPressed(evt,right);
-				break;
-			case down:
-				downKey=true;
-				arrowPressed(evt,down);
-				break;
-		}
 		
+		startTimer=true;
+		keyStatusDown(evt);		
+			
 	};
-
+	
 	document.onkeyup = function(evt) {
-		evt = evt || window.event;
-		switch (evt.keyCode) {
-			case left:
-				leftKey=false;
-				break;
-			case up:
-				upKey=false;
-				break;
-			case right:
-				rightKey=false;
-				break;
-			case down:
-				downKey=false;
-				break;
-		}
+
+		keyStatusUp(evt);
 
 	};
+	//console.log(startTimer);
+	//if(startTimer){
+		CreateTimer("timer", 30);
+//	}
+	
 		
 });
 
+//------ Varibler start ------///
+
+	//pilarnas värde
 	var left  = 37;
 	var up    = 38;
 	var right = 39;
 	var down  = 40;
 	
+	//avståndet som sker per knapptryckning
 	var moveDistans = 0.0001;
 
 	//avstånd mellan varje zon
 	var zonDistans = 0.001;
+	//sätter varje pil knapp till false
 	var leftKey, upKey, rightKey, downKey=false;
-
+	
+	//helekopterns posistioner
 	var mobilLat;
 	var mobilLng; 
 
 	var map;
-	var image;
-
+	var image='down';
+	
+	//systembolaget/ns värde/n
 	var foundStores = []; // önskade uppgifter om butiker
 	
+	//slutmålet för helekoptern
 	var latEnd;
 	var lngEnd;
 
+	//texten vid helekoptern	
 	var text = "hmm...";
 	
-	function getMobilMove(){
-		$.getJSON("game/getDirections", function (data) {
-			console.log(data);
-			$.each(data,function(i, post){
-					//för varje inlägg skriver den ut en div
-				leftKey  = mobilMove(post.left);
-				upKey    = mobilMove(post.up);
-				rightKey = mobilMove(post.right);
-				downKey  = mobilMove(post.down);
-				
-			});
-			
-		});
+	//sätts till false vid avklarad uppgift
+	var getDirectionStatus=true;
+	
+	var startTimer=false;
+	var Timer;
+	var TotalSeconds;
+	
+	
+	
+	//------ Varibler slut ------///
+	
+	//-------------  FUNKTIONER START ---------------------//
 
-		setTimeout(getMessage,200);//kör funktionen getMessage varje 
-
-	};
-
-	function mobilMove(status){
-					
-		if(status==1){
-			return true;
-		}else{
-			return false;
-		}
-				
-	};
-					
-
+	
+//----- hämtar koordinater från skärmens plats ------//
+//-- med koordinaterna för systembolagen  -- //	
 	function showPosition(position){
 
 		mobilLat = parseFloat(position.coords.latitude);
@@ -128,7 +96,6 @@
 			$.each(data.items, function (key, value) {
 			
 				foundStores[key] = [];
-		//alert('key>>' + key);
 				foundStores[key]["id"] = value.id;
 				foundStores[key]["sysid"] = value.sysid;
 				foundStores[key]["lat"] = value.lat;
@@ -139,25 +106,24 @@
 				
 			});
 			
-			console.log(foundStores);
-
 			/*När uppgifterna är hämtade -> skriv ut kartan*/
 			
 			var myLatlng = new google.maps.LatLng(latitude, longitude);
-			//printMap(myLatlng, "map_canvas");
-			alert('här i showpos rfunction data ' + foundStores.length);//3
+			
+			initialize();
+			
 		});
-		alert('här i showpos ' + foundStores.length);//0
-		initialize();
 	
 	};
 	
-	//skapar kartan
+	
+	//---- skapar kartan ---//
+
 	function initialize() {
 		var mapOptions = {
 			center: new google.maps.LatLng(latStart, lngStart),
 			zoom: 18,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+			mapTypeId: google.maps.MapTypeId.SATELLITE
 		};
 		
 		map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -169,21 +135,14 @@
 		
 		var dist=500;
 		
-//både zonerna och markeringen fungerar inte utan alerten!!??		
-//alert('lycka till på spelet');
-alert('här i init' + foundStores.length); //3
-
 		/*Loopa för att placera ut alla butiker*/
-		for (var i = 0; i <= foundStores.length; i++) {
-alert('här i init i forloopen ' + foundStores.length);//3
-			var theStoresLocation = new google.maps.LatLng(foundStores[i].lat, foundStores[i].lng);
-			//setMarkers(map, theStoresLocation, foundStores[i].address, the_stores_logo, foundStores[i].id);
-			setMarkers(map, theStoresLocation, foundStores[i].address, foundStores[i].id);
+		for (var i = 0; i < foundStores.length; i++) {
 
+			var theStoresLocation = new google.maps.LatLng(foundStores[i].lat, foundStores[i].lng);
+			setMarkers(map, theStoresLocation, foundStores[i].address, foundStores[i].id);
 			
 			if(dist > foundStores[i].dist_km){
-alert('här inne' +foundStores[i].dist_km);//3,69
-			dist = foundStores[i].dist_km;
+				dist = foundStores[i].dist_km;
 				latEnd = parseFloat(foundStores[i].lat);
 				lngEnd = parseFloat(foundStores[i].lng);
 			}	
@@ -192,36 +151,49 @@ alert('här inne' +foundStores[i].dist_km);//3,69
 		
 	};
 	
-	
-	//-------------  FUNKTIONER  ---------------------//
-
-	//------ Henrys kod start ------///
+	//------ hämta data från mobil/Ipad databasen ------///
 		
 	function getCoords() {
 	
 		$.getJSON("game/getDirections", function (data) {
-		 console.log(data[0].mobileID);
+					
+			leftKey	= mobilMoveStatus(data[0].vast);
+			upKey	= mobilMoveStatus(data[0].nord);
+			rightKey= mobilMoveStatus(data[0].ost);
+			downKey = mobilMoveStatus(data[0].syd);
 	
-		$("#nord").text(data[0].nord);
-		$("#syd").text(data[0].syd);
-		$("#vast").text(data[0].vast);
-		$("#ost").text(data[0].ost);
-		
-		leftKey	= mobilMove(data[0].nord);
-		upKey	= mobilMove(data[0].syd);
-		rightKey= mobilMove(data[0].vast);
-		downKey = mobilMove(data[0].ost);
-		
-//alert(leftKey + ' ' + upKey + ' ' + rightKey + ' ' + downKey);
-		
+			//stoppar helekoptern vid målet
+			if(getDirectionStatus){
+				mobilMoved();
+			}	
+			
 		});
+
 		pageReloader();
 	}
+	
+	//ger status på rörelsen på eller av true or false
+	function mobilMoveStatus(status){					
 
+		if(status==1){
+			
+			startTimer=true;
+			return true;
+			
+		}else{
+			return false;
+		}
+	
+	}
+		
 	function pageReloader() {
+	
 		var mobilTimer=	setTimeout(	function(){
-										getCoords();
-									},200);
+			getCoords();
+		},200);
 	}
 
-//------ Henrys kod slut ------///
+//------ hämtar data från mobil/Ipad slut ------///
+
+
+//-------------  FUNKTIONER SLUT ---------------------//
