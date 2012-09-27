@@ -1,7 +1,17 @@
+	// används som konstant på alla sidor
 	var url = document.URL;
 	var i = url.indexOf("tuctravels");
-	
 	url = url.substring(0, i+11);
+	
+	// används för att veta vilken controller man kommer ifrån innan man loggade ut.
+	var backpage = document.URL;
+	var i = backpage.indexOf("user");
+	backpage = backpage.substring(0,i);
+	$.trim(backpage);
+	backpage = backpage.split("/");
+	
+	backpage = backpage.reverse();
+	backpage = backpage[1];
 
 $(document).ready( function () {
 	

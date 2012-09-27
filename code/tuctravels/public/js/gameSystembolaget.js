@@ -129,9 +129,7 @@
 		map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	
 		/*markeringsikoner*/
-
-		var the_stores_logo = 'http://localhost/php/integration/gitTucTravel/tucTravels/code/mvc/public/images/logo_systembolaget.png';
-	//	var points_where_you_are = 'lean.gif';
+		var imgBolaget = url + 'public/images/logo_systembolaget.png';
 		
 		var dist=500;
 		
@@ -139,7 +137,7 @@
 		for (var i = 0; i < foundStores.length; i++) {
 
 			var theStoresLocation = new google.maps.LatLng(foundStores[i].lat, foundStores[i].lng);
-			setMarkers(map, theStoresLocation, foundStores[i].address, foundStores[i].id);
+			setMarkers(map, theStoresLocation, foundStores[i].address, imgBolaget, foundStores[i].id);
 			
 			if(dist > foundStores[i].dist_km){
 				dist = foundStores[i].dist_km;

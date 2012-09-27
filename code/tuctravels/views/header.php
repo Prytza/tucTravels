@@ -41,9 +41,9 @@
 Header<br />
 
 <a href="<?php echo URL; ?>index">Home</a>
-<a href="<?php echo URL; ?>game/<?php echo (isset($this ->fb_login["user"]) && $this ->fb_login["user"] != 0) ? "user/" . $this -> fb_login["user"] : ""; ?>">Let's Play - Golden Thai</a>
-<a href="<?php echo URL; ?>gameSystembolaget">Let's Play - Systembolaget</a>
+<a href="<?php echo URL; ?>game/<?php echo (isset($this ->fb_login["user"]) && $this ->fb_login["user"] != 0) ? "user/" . $this -> fb_login["user"] : ""; ?>">Let's Play</a>
 <a href="<?php echo URL; ?>faq">FAQ</a>
+<a href="<?php echo URL; ?>chat">Chat</a>
 <?php if (isset($this ->fb_login["user"]) && $this ->fb_login["user"] != 0) : ?>
 <a href="<?php echo URL; ?>myprofile">My Profile</a>
 <?php endif; ?>

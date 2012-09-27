@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chat>
+
+<message>
+	<timestamp>04:05:52</timestamp>
+	<user>Hej</user>
+	<text>Tjenixen</text>
+</message>
+
+<message>
+	<timestamp>04:06:17</timestamp>
+	<user>Tjeolp</user>
+	<text>seasea</text>
+</message>
+
+		<message>
+			<timestamp>08:14:35</timestamp>
+			<user>Julle</user>
+			<text>Fan!</text>
+		</message>
+
+		<message>
+			<timestamp>08:17:27</timestamp>
+			<user>Julle</user>
+			<text>Fan!</text>
+		</message>
+
+		<message>
+			<timestamp>08:17:46</timestamp>
+			<user>Julle</user>
+			<text>Ny jävlar!</text>
+		</message>
+
+		<message>
+			<timestamp>08:19:22</timestamp>
+			<user>Fia</user>
+			<text>Fan!</text>
+		</message>
+
+		<message>
+			<timestamp>08:20:12</timestamp>
+			<user>Fia</user>
+			<text>Nu då?</text>
+		</message>
+
+		<message>
+			<timestamp>08:23:22</timestamp>
+			<user>Henry</user>
+			<text>Nu då?</text>
+		</message>
+
+		<message>
+			<timestamp>08:32:30</timestamp>
+			<user>Henry</user>
+			<text>Det måste funka!</text>
+		</message>
+
+		<message>
+			<timestamp>08:35:09</timestamp>
+			<user>Henry</user>
+			<text>Nu då?</text>
+		</message>
+
+		<message>
+			<timestamp>08:35:33</timestamp>
+			<user>Henry</user>
+			<text>Nu då?</text>
+		</message>
+
+		<message>
+			<timestamp>08:37:51</timestamp>
+			<user>Henry</user>
+			<text>Apa</text>
+		</message>
+
+		<message>
+			<timestamp>08:37:56</timestamp>
+			<user>Henry</user>
+			<text>Apa va?</text>
+		</message>
+
+		<message>
+			<timestamp>08:40:01</timestamp>
+			<user>Henry</user>
+			<text>Nu vill jag sova snart!</text>
+		</message>
+
+		<message>
+			<timestamp>08:41:00</timestamp>
+			<user>Henry</user>
+			<text>Ska bli gött med en öl imorgon!</text>
+		</message>
+
+		<message>
+			<timestamp>08:44:49</timestamp>
+			<user>Henry</user>
+			<text></text>
+		</message>
+
+		<message>
+			<timestamp>08:44:55</timestamp>
+			<user>Henry</user>
+			<text>Nu ska det funka!</text>
+		</message>
+
+		<message>
+			<timestamp>08:45:03</timestamp>
+			<user>Julle</user>
+			<text>Eller?</text>
+		</message>
+		</chat>

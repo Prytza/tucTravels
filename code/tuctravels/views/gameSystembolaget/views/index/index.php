@@ -1,1 +1,0 @@
-﻿<h2>Visa en screencast på själva spelet...</h2>

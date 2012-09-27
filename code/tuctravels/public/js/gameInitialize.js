@@ -51,7 +51,7 @@ function setMarkers (map, storeCoords, place, img, storeID = null) {
 	var marker = new google.maps.Marker({
 		position: storeCoords,
 		title: place,
-		//icon: img
+		icon: img
 	});
 		
 	/*Lägg till markering till kartan*/

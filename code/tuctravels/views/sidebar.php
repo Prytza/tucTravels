@@ -1,7 +1,7 @@
 ﻿<script>
 
 	var oldData;
-
+	
 	function updateInloggedUsers () {
 		
 		$.getJSON(url + 'game/getInloggedUsers', function(data) {
@@ -19,7 +19,7 @@
 						var img = $("<img />").attr("src", "https://graph.facebook.com/" + val.facebookID + "/picture");
 						var linkToMap = $("<a />").attr("href", url + "game/user/" + val.facebookID);
 						var name = $("<span />").text(data.name).appendTo(linkToMap);
-						var linkToLogout = $("<a />").attr({href: url + "login/quit/" + val.facebookID, alt: "Logga ut", "class": "logoutLink"});
+						var linkToLogout = $("<a />").attr({href: url + "login/quit/" + val.facebookID + "/" + backpage, alt: "Logga ut", "class": "logoutLink"});
 						var X = $("<span />").text("X").appendTo(linkToLogout);
 						
 						var inloggedUserTextBox = $("<div />").attr("class", "inloggedUserText")

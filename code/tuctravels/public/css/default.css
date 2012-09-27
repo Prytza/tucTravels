@@ -166,3 +166,104 @@ body {
 	margin-top: -30px;
 	right: 50px;
 }
+
+/* Chat */
+
+/*body{
+	margin: 0 auto;
+	font-family: Tahoma, Geneva, sans-serif;
+	background-color:#444;
+}
+*/
+
+#wrapper{
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 760px;
+	background: #CCC;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	border-radius: 10px;
+}
+
+#info{
+	height: 30px;
+	margin: 20px;
+}
+
+#chattruta{
+	height: 350px;
+	overflow-y: scroll;
+	margin: 20px;
+	background: white;
+	border-radius: 5px;
+	padding-left: 10px;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+#chattruta p{
+	margin: 0px;
+	font-size: 14px;
+	color: #000;
+}
+
+#write{
+	padding-left: 20px;
+	text-align: left start;
+	color: #666;
+	font-size:12px;
+}
+
+#ruta{
+	font-family: Tahoma, Geneva, sans-serif;
+	width: 630px;
+	text-align: left;
+	height: 30px;
+	margin-top: 5px;
+	border-radius: 10px;
+	border: none;
+	margin-left: -4px;
+}
+
+#user{
+	font-family: Tahoma, Geneva, sans-serif;
+	border-radius: 10px;
+	border: none;
+	height: 20px;
+	padding: 3px;	
+	margin-top: 5px;
+	margin-left: -4px;
+	
+}
+
+#skicka{
+	font-family: Tahoma, Geneva, sans-serif;
+		margin-top: 5px;
+	float: right;
+	width: 80px;
+	height: 30px;
+	border: none;
+	background: #333;
+	color: #999999;
+	border-radius: 5px;
+	margin-right: 20px;	
+}
+
+.small_text{
+	font-size: 12px;	
+}
+
+.me{
+	color: blue;	
+}
+.notme{
+	color: #999;	
+}
+#knapp{
+	height: 50px;
+	width: 50px;
+	background: red;	
+}
+
+.message{
+	
+}

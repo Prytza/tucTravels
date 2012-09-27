@@ -22,7 +22,7 @@ class Game extends Controller {
 			// $FM -> checkIfUserExist($user);
 		// }
 	
-		$this -> view -> js = array("game");
+		$this -> view -> js = array("gameSystembolaget"); // ändra till game om inte systembevakningstjänsten fungerar.
 	
 		$this -> view -> render("game/index", false, true);
 	

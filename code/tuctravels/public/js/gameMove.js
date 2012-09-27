@@ -24,7 +24,7 @@ function getImage(){
 	//sätta rätt namn på bilden i urlen 
 	//document.getElementById("helikopter").src="<?php echo URL; ?>public/images/" + image + ".gif";
 			
-	document.getElementById("helikopter").src="http://localhost/php/integration/gitTucTravel/tucTravels/code/tuctravels/public/images/" + image + ".gif";
+	document.getElementById("helikopter").src= url + "public/images/" + image + ".gif";
 }
 
 

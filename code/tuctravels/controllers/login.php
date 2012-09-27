@@ -23,20 +23,38 @@ class Login extends Controller {
 		// $this -> model -> facebook();
 	// }
 	
-	function quit($facebookID = false) {
+	function quit($facebookID = false, $backpage = false) {
+	
+		if ($backpage) {
 
-		if ($facebookID) {
+			if ($facebookID) {
+			
+				$this -> model -> quit($facebookID);
+			
+			}
+
+			Session::init();
+			Session::destroy();
+
+			header("location: " . URL . $backpage);
+			exit;
+		}
+		else {
 		
-			$this -> model -> quit($facebookID);
+			if ($facebookID) {
+			
+				$this -> model -> quit($facebookID);
+			
+			}
+
+			Session::init();
+			Session::destroy();
+
+			header("location: " . URL);
+			exit;
 		
 		}
 
-		Session::init();
-		Session::destroy();
-
-		header("location: " . URL);
-		exit;
-	
 	}
 
 }
