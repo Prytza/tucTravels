@@ -1,64 +1,19 @@
 $(function () {
 
-	//getCoords();
-	//getMobilMove();
-	//http://integration.henryandersson.se/tuctravels/mobile
-
 	getLocation();
 	
-	var helikopter = $("#helikopter");
-	helikopter.css("zIndex", 10);
-	
-
+	getCoords();
+		
 	document.onkeydown = function(evt) {
-
-		playMobil=false;
-		
-		//stoppa timern för mobilstyrningen
-		clearTimeout(mobilTimer);
-		
-		evt = evt || window.event;
-
-		switch (evt.keyCode) {
-			case left:
-				leftKey=true;				
-				arrowPressed(evt,left);
-				break;
-			case up:
-				upKey=true;
-				arrowPressed(evt,up);
-				break;
-			case right:
-				rightKey=true;
-				arrowPressed(evt,right);
-				break;
-			case down:
-				downKey=true;
-				arrowPressed(evt,down);
-				break;
-		}
+	
+		 keyStatusDown(evt);
 
 	};
 
-
-
 	document.onkeyup = function(evt) {
-		evt = evt || window.event;
-		switch (evt.keyCode) {
-			case left:
-				leftKey=false;
-				break;
-			case up:
-				upKey=false;
-				break;
-			case right:
-				rightKey=false;
-				break;
-			case down:
-				downKey=false;
-				break;
-		}
-
+	
+		keyStatusUp(evt);
+	
 	};
 
 });
@@ -74,12 +29,15 @@ $(function () {
 	var moveDistans = 0.0001;
 		//avstånd mellan varje zon
 	var zonDistans = 0.001;
-	var leftKey, upKey, rightKey, downKey=false;
+	var leftKey=false;
+	var	upKey=false;
+	var rightKey=false;
+	var downKey=false;
 	
 	var latStart; 
 	var lngStart;
 	var map;
-	var image;
+	var image='down';
 
 	var mobilLat = 58.039818;
 	var mobilLng = 14.987047; 
@@ -89,70 +47,74 @@ $(function () {
 	var lngEnd = 14.976296;
 	
 	var text = "hmm...";
+	var getDirektionStatus=true;
 	
-	var playMobil=false;
-	var mobilTimer;
-	var showPosition;
 	//om man valt att styta med mobilen
 
 //------ Varibler slut ------///
 
-
-
 //-------------  FUNKTIONER  ---------------------//
 
-	//------ Henrys kod start ------///
+	//------ hämta data från mobil/Ipad databasen ------///
 		
 	function getCoords() {
 	
-		$.getJSON("game/getDirections", function (data) {
-		 console.log(data[0].mobileID);
+		$.getJSON(url + "game/getDirections", function (data) {
 	
-		$("#nord").text(data[0].nord);
-		$("#syd").text(data[0].syd);
-		$("#vast").text(data[0].vast);
-		$("#ost").text(data[0].ost);
-		
-		leftKey	= mobilMove(data[0].nord);
-		upKey	= mobilMove(data[0].syd);
-		rightKey= mobilMove(data[0].vast);
-		downKey = mobilMove(data[0].ost);
-		
-//alert(leftKey + ' ' + upKey + ' ' + rightKey + ' ' + downKey);
-		
+			leftKey	= mobilMoveStatus(data[0].vast);
+			upKey	= mobilMoveStatus(data[0].nord);
+			rightKey= mobilMoveStatus(data[0].ost);
+			downKey = mobilMoveStatus(data[0].syd);
+	
+			//stoppar helekoptern vid målet
+			if(getDirektionStatus){
+				
+				
+				mobilMoved();
+			}	
+			
 		});
 		pageReloader();
 	}
-
+	
+	function mobilMoveStatus(status){					
+		if(status==1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+			
 	function pageReloader() {
-		var mobilTimer=	setTimeout(	function(){
-										getCoords();
-									},200);
+		setTimeout(	function(){
+			getCoords();
+		},200);
 	}
 
-//------ Henrys kod slut ------///
+//------ hämtar data från mobil/Ipad slut ------///
 	
-//skapar kartan
+//------ skapar kartan --------//
+
 function initialize() {
 	var mapOptions = {
 		center: new google.maps.LatLng(latStart, lngStart),
 		zoom: 18,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
+		mapTypeId: google.maps.MapTypeId.SATELLITE
 	};
 	
 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	
-	playMobil=false;
-	
-	if(playMobil==true){
-		function pageReloader() {
-			setTimeout(function(){
-				moveMap();
-			},500);
-		}	
-	}
+	function pageReloader() {
+		setTimeout(function(){
+			moveMap();
+		},200);
+	}	
+
 
 };
+
+//----- hämtar koordinater från skärmens plats ------//
 
 function showPosition(position){
 

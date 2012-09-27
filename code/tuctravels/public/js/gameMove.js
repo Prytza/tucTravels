@@ -1,37 +1,6 @@
-function arrowPressed(event,keyNumber){
-	
-  parseFloat(mobilLat);
-  parseFloat(mobilLng);
-  parseFloat(moveDistans);
-	
-	event.preventDefault();	
-	
-	if(leftKey){//left
-
-		mobilLng = mobilLng - moveDistans;
-
-	}
-
-	if(downKey){//down
-		mobilLat = mobilLat - moveDistans;
-	}
-
-	if(upKey){//up
-		mobilLat = mobilLat + moveDistans;
-	}
-
-	if(rightKey){//right
-		mobilLng = mobilLng + moveDistans;	
-	}
-	
-	getImage();
-	moveMap();
-
-}
-
 
 function getImage(){
-	
+		
 	if(leftKey && upKey){
 		image="leftup";
 	}else if(leftKey && downKey){
@@ -49,6 +18,8 @@ function getImage(){
 	}else if(downKey){
 		image="down";
 	}
+	
+	
 	
 	//sätta rätt namn på bilden i urlen 
 	//document.getElementById("helikopter").src="<?php echo URL; ?>public/images/" + image + ".gif";
@@ -90,21 +61,10 @@ function getImage(){
 	
 		parseFloat(mobilLat);
 		parseFloat(mobilLng);
-
-		// alert(	'lat -->' + mobilLat + 
-		// ' One -->' + zonCoordOne +
-		// ' lng -->' + mobilLng +
-		// ' Three -->' + zonCoordThree)
-		
-		//if( mobilLat < zonCoordOne ){alert('inne 1');}
-		//if( mobilLat > zonCoordTwo ){alert('inne 2');}
-		//if( mobilLng < zonCoordThree ){alert('inne 3');} 
-		//if( mobilLng > zonCoordFour ){alert('inne 4');}
-		
+	
 		if( mobilLat < zonCoordOne && mobilLat > zonCoordTwo && mobilLng < zonCoordThree && mobilLng > zonCoordFour ){
 
-		//alert(mobilLat + ' <-inne i if OVANLIGT-> ' + mobilLng);
-
+	
 			if(zon == 4){
 
 				text = "Zon 4 en bit kvar";
@@ -124,10 +84,83 @@ function getImage(){
 			}else if(zon == 0.167){
 
 				text = "<strong style='color:#ff6633;'><strong>Nice, du klarade det!!</strong>";
-
+				getDirectionStatus=false;
 			}	
 
 		}	
 
 		return text;
 	};	
+	
+		function keyStatusDown(evt){
+		
+			evt = evt || window.event;
+			
+			switch (evt.keyCode) {
+				case left:
+					leftKey=true;
+					evt.preventDefault();	
+					break;
+				case up:
+					upKey=true;
+					evt.preventDefault();	
+					break;
+				case right:
+					rightKey=true;
+					evt.preventDefault();	
+					break;
+				case down:
+					downKey=true;
+					evt.preventDefault();	
+					break;
+			}
+			mobilMoved();
+		}
+
+		
+		function keyStatusUp(evt){
+
+			evt = evt || window.event;
+				switch (evt.keyCode) {
+					case left:
+						leftKey=false;
+						break;
+					case up:
+						upKey=false;
+						break;
+					case right:
+						rightKey=false;
+						break;
+					case down:
+						downKey=false;
+						break;
+				}
+		}
+	
+		
+	//när kordinater från mobilen ändras
+function mobilMoved(){
+				
+	
+	
+	if(leftKey){//left
+		mobilLng = mobilLng - moveDistans;	
+	}
+
+	if(downKey){//down
+		mobilLat = mobilLat - moveDistans;
+	}
+
+	if(upKey){//up
+		mobilLat = mobilLat + moveDistans;
+	}
+
+	if(rightKey){//right
+		mobilLng = mobilLng + moveDistans;	
+	}
+
+	getImage();
+	moveMap();
+	
+	
+}

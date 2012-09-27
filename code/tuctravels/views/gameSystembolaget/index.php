@@ -1,11 +1,11 @@
 
+
 <div id="map_wrapper">
+<div id='timer' ></div>
 	<div id="map_canvas"></div>
 	<img id="helikopter" src="<?php echo URL; ?>public/images/down.gif" alt="flygande helekopter" />
 	<p id="message">Start systembolaget...</p>
 </div>
-
-
 
 <script type="text/javascript" src="<?php echo URL; ?>public/js/gameInitialize.js">
 </script>

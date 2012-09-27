@@ -1,5 +1,4 @@
-			
-
+var setClearTimeout;
 function getLocation(){
 
 	if (navigator.geolocation){//om det finns ett värde i navigator.geolocation
@@ -13,23 +12,41 @@ function getLocation(){
 	}
 };
 
+function CreateTimer(TimerID, Time) {
+        Timer = document.getElementById(TimerID);
+        TotalSeconds = Time;
+        
+        UpdateTimer();
+        Tick();
+}
 
-function printMap (yourPosition, mapContainer) {
-		
-	var mapOptions = {
-		zoom: 10,
-		center: yourPosition,
-		mapTypeId: google.maps.MapTypeId.ROADMAP, 
+function Tick() {
+
+	console.log(getDirectionStatus);
+	if( TotalSeconds > 0){
+        TotalSeconds -= 1;
+        UpdateTimer()
+        setClearTimeout=setTimeout("Tick()", 1000);
+	}else{
+		document.getElementById('timer').innerHTML  = "<strong style='color:#ff6633;'><strong>GAME OVER</strong>";
 	}
 	
-	map = new google.maps.Map(document.getElementById(mapContainer), mapOptions);
+	if(!getDirectionStatus){
 	
-};
-	
+		clearTimeout(setClearTimeout);
+		
+		
+		//spara tiden i databasen...
+	}
+}
+
+function UpdateTimer() {
+        Timer.innerHTML = TotalSeconds;
+}
+
+
 /*Sätt ut markörer enligt koordinaterna*/
 function setMarkers (map, storeCoords, place, img, storeID = null) {	
-
-//function setMarkers (map, storeCoords, place, storeID = null) {	
 
 	var marker = new google.maps.Marker({
 		position: storeCoords,
