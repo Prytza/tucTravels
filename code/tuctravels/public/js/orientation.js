@@ -91,17 +91,101 @@ $(document).ready(function(e) {
 	var imgUrlPath = url + "public/images/";
 	var active = false;
 	
+	
 	$('#activate').click(function(){
 		if (!active) {
 			autosubmit();
 			$(this).css('background', 'url(' + imgUrlPath +'deactivate.png)');
+			$("#activateText").text("Activated");
 			active = true;
 		}
 		else {
 			clearTimeout(timer);
 			$(this).css('background', 'url(' + imgUrlPath +'activate.png)');
+			$("#activateText").text("Click to activate");
 			active = false;
 		}
 	});
+	
+	var uri = document.URL;
+	var i = uri.indexOf("tuctravels");
+	
+	uri = uri.substring(i);
+	
+	var params = uri.split("/");
+	
+	if (params[3]) {
+	
+		// koordinater till TUC som default
+		latitude = 58.039818;
+		longitude = 14.987047;
+	
+		// defaultvärden skickas till databasen
+		sendUserInfoFromMobile(params[3], latitude, longitude);
+		
+		// om geolocation körs (om användaren tillåter att ange position)
+		// defaultvärdena uppdateras med de korrekta koordinaterna.
+		navigator.geolocation.getCurrentPosition(GetLocation);
+			
+	}
+	
+	
+	function GetLocation(location) {
+	
+		var lat = location.coords.latitude;
+		var lng = location.coords.longitude;
+		
+		updateUserInfoFromMobile(params[3], latitude, longitude);
+			
+	}
+	
+	console.log(ua);
+	
+	//sätter utloggnings url.
+	$("#fb_logout_mobile_view").attr("href", url + "login/quit/" + params[3]);
 
 });
+
+	function sendUserInfoFromMobile (id, latitude, longitude) {	
+		
+		$.post(url + 'mobile/sendUserInfoFromMobile', {
+			facebookID: id,
+			lat: latitude,
+			lng: longitude
+		}, function (data) {
+			// någon nytta av senaste id?
+			console.log("lastIsnertId =" + data);
+		});
+		
+	}
+	
+	function updateUserInfoFromMobile (id, latitude, longitude) {
+	
+		$.post(url + 'mobile/updateUserInfoFromMobile', {
+			facebookID: id,
+			lat: latitude,
+			lng: longitude
+		});
+	
+	}
+	
+	/*Lägre prio - hämta uppgifter om användarens enhet/operativ och lägg in i databasen*/
+	
+	var ua = navigator.userAgent;
+	var checker = {
+	iphone: ua.match(/(iPhone|iPod|iPad)/),
+	blackberry: ua.match(/BlackBerry/),
+	android: ua.match(/Android/)
+	};
+	if (checker.android) {
+	//code for Android
+	}
+	else if (checker.iphone) {
+	//code for iOS device
+	}
+	else if (checker. blackberry) {
+	//code for BlackBerry
+	}
+	else{
+		//console.log(ua);
+	}

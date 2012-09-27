@@ -62,5 +62,11 @@ class Mobile extends Controller {
 		$this -> model -> sendUserInfoFromMobile();
 	
 	}
+	
+	function updateUserInfoFromMobile () {
+	
+		$this -> model -> updateUserInfoFromMobile();
+	
+	}
 
 }

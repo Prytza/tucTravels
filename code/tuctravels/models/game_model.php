@@ -17,7 +17,7 @@ class Game_Model extends Model {
 	
 	public function getInloggedUsers () {
 	
-		$sth = $this->db->prepare('SELECT * FROM user WHERE active = 1');
+		$sth = $this->db->prepare('SELECT * FROM user WHERE active = 1 ORDER BY userID DESC');
 		$sth->setFetchMode(PDO::FETCH_ASSOC);
 		$sth->execute();
 		$data = $sth->fetchAll();

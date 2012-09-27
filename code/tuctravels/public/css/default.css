@@ -44,22 +44,53 @@ body {
 }
 
 #sidebar {
-	width: 230px;
-	height: 300px;
+	width: 330px;
+	height: 400px;
 	background: url(../images/green_arrow.png) 0px 130px no-repeat;
 	position: fixed;
 	top: 87px;
 	right: 0px;
 }
 
+#special {
+	width: 30px;
+	height: 170px;
+	float: left;
+	position: relative;
+}
+#sliderButton {
+	width: 30px;
+	height: 38px;
+	position: absolute;
+	bottom: 0;
+}
+
 #sidebarContent {
-	width: 200px;
-	background-color: #80a637;
+	width: 300px;
+	background: url(../images/bg.jpg);
 	color: #000;
 	position: absolute;
 	top: 0px;
 	right: 0px;
-	height: 300px;
+	height: 400px;
+	overflow: auto;
+}
+
+.inloggedUserText {
+	display: inline;
+	float: right;
+	width: 220px;
+	margin: 5px;
+}
+.inloggedUser {
+	border: 1px solid lime;
+	background: #ccc;
+	float: left;
+	width: 280px;
+	margin: 4px 0 4px 4px;
+}
+.logoutLink {
+	float: right;
 }
 
 #footer {
@@ -134,4 +165,105 @@ body {
 	position:fixed;
 	margin-top: -30px;
 	right: 50px;
+}
+
+/* Chat */
+
+/*body{
+	margin: 0 auto;
+	font-family: Tahoma, Geneva, sans-serif;
+	background-color:#444;
+}
+*/
+
+#wrapper{
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 760px;
+	background: #CCC;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	border-radius: 10px;
+}
+
+#info{
+	height: 30px;
+	margin: 20px;
+}
+
+#chattruta{
+	height: 350px;
+	overflow-y: scroll;
+	margin: 20px;
+	background: white;
+	border-radius: 5px;
+	padding-left: 10px;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+#chattruta p{
+	margin: 0px;
+	font-size: 14px;
+	color: #000;
+}
+
+#write{
+	padding-left: 20px;
+	text-align: left start;
+	color: #666;
+	font-size:12px;
+}
+
+#ruta{
+	font-family: Tahoma, Geneva, sans-serif;
+	width: 630px;
+	text-align: left;
+	height: 30px;
+	margin-top: 5px;
+	border-radius: 10px;
+	border: none;
+	margin-left: -4px;
+}
+
+#user{
+	font-family: Tahoma, Geneva, sans-serif;
+	border-radius: 10px;
+	border: none;
+	height: 20px;
+	padding: 3px;	
+	margin-top: 5px;
+	margin-left: -4px;
+	
+}
+
+#skicka{
+	font-family: Tahoma, Geneva, sans-serif;
+		margin-top: 5px;
+	float: right;
+	width: 80px;
+	height: 30px;
+	border: none;
+	background: #333;
+	color: #999999;
+	border-radius: 5px;
+	margin-right: 20px;	
+}
+
+.small_text{
+	font-size: 12px;	
+}
+
+.me{
+	color: blue;	
+}
+.notme{
+	color: #999;	
+}
+#knapp{
+	height: 50px;
+	width: 50px;
+	background: red;	
+}
+
+.message{
+	
 }

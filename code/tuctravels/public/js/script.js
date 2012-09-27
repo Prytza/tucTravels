@@ -1,8 +1,17 @@
+	// används som konstant på alla sidor
 	var url = document.URL;
 	var i = url.indexOf("tuctravels");
-	
 	url = url.substring(0, i+11);
-	console.log(url);
+	
+	// används för att veta vilken controller man kommer ifrån innan man loggade ut.
+	var backpage = document.URL;
+	var i = backpage.indexOf("user");
+	backpage = backpage.substring(0,i);
+	$.trim(backpage);
+	backpage = backpage.split("/");
+	
+	backpage = backpage.reverse();
+	backpage = backpage[1];
 
 $(document).ready( function () {
 	
@@ -28,14 +37,16 @@ $(document).ready( function () {
 		$(this).animate({top: top});	
 	});
 	
-	$('#sidebar').css('right', -200);
+	$('#sidebar').css('right', -300);
 	
-	$('#sidebar').click(function(){	
-		if($(this).css('right') == "0px"){
-			right = -200;
+	$('#sliderButton').click(function(){	
+		if($('#sidebar').css('right') == "0px"){
+			right = -300;
+			$('#sidebar').delay('400').css('background', 'url(' + url + 'public/images/green_arrow.png) 0px 130px no-repeat');
 		}else{
-			right = 0;	
+			right = 0;
+			$('#sidebar').delay('400').css('background', 'url(' + url + 'public/images/green_arrow2.png) 0px 130px no-repeat');
 		}
-		$(this).animate({right: right});	
+		$('#sidebar').animate({right: right});	
 	});
 });

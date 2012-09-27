@@ -28,6 +28,13 @@ class Bootstrap {
 		$controller -> loadModel($url[0]);
 
 		// calling methods
+		if (isset($url[3])) {
+			if (method_exists($controller, $url[1])) {
+				$controller->{$url[1]}($url[2], $url[3]);
+			} else {
+				$this->error();
+			}
+		}
 		if (isset($url[2])) {
 			if (method_exists($controller, $url[1])) {
 				$controller->{$url[1]}($url[2]);
