@@ -46,7 +46,7 @@ class Facebook_Model extends Model {
 		// Login or logout url will be needed depending on current user state.
 		if ($user) {
 		  $logoutUrl = $facebook->getLogoutUrl(array(
-													'next' => URL . 'login/quit'
+													'next' => URL . 'login/quit/'
 												  ));
 		} else {
 		  $loginUrl = $facebook->getLoginUrl(array(

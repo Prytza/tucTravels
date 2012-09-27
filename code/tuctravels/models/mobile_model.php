@@ -38,21 +38,70 @@ class Mobile_Model extends Model {
 		$lng = $_POST['lng'];
 		$active = 1;
 		
-		/*Skulle kunna dra nytta av checkIfUserExist i Facebook_Model
-		 *för att slippa att det blir för många rader i databasen.
-		 *lägre prio...
-		 */
+		/*Kontrollera om användaren redan finns i databasen*/
+		$sth = $this->db->prepare('SELECT * FROM user WHERE facebookID = :facebookID');
+		$sth->setFetchMode(PDO::FETCH_ASSOC);
+		$sth->execute(array(":facebookID" => $facebookID));
+		$data = $sth->fetchAll();
 		
+		$count = $sth->rowCount();
 		
-		$query = 'INSERT INTO user (facebookID, currentLng, currentLat, active) VALUES (:facebookID, :lng, :lat, :active)';
+		/*Om användaren redan finns - gör en UPDATE, annars en INSERT*/
+		if ($count > 0) {
+		
+			$query = 'UPDATE user SET currentLng = :lng, currentLat = :lat, active = :active WHERE facebookID = :facebookID';
+		
+			$sth = $this->db->prepare($query);
+			
+			$statements = array(
+					':lat' => $lat,
+					':lng' => $lng,
+					':active' => $active,
+					':facebookID' => $facebookID
+			);
+			
+			$sth->execute($statements);
+		
+		}
+		else {
+		
+			$query = 'INSERT INTO user (facebookID, currentLng, currentLat, active) VALUES (:facebookID, :lng, :lat, :active)';
+		
+			$sth = $this->db->prepare($query);
+			
+			$statements = array(
+					':facebookID' => $facebookID,
+					':lat' => $lat,
+					':lng' => $lng,
+					':active' => $active
+			);
+			
+			$sth->execute($statements);
+			
+			$result = $this -> db -> lastInsertId();
+			
+			$result = json_encode($result);
+			header('Content-Type: application/json');
+			echo $result;
+		
+		}
+		
+	}
+	
+	function updateUserInfoFromMobile () {
+	
+		$facebookID = $_POST['facebookID'];
+		$lat = $_POST['lat'];
+		$lng = $_POST['lng'];
+		
+		$query = 'UPDATE user SET currentLng = :lng, currentLat = :lat WHERE facebookID = :facebookID';
 		
 		$sth = $this->db->prepare($query);
 		
 		$statements = array(
 				':facebookID' => $facebookID,
 				':lat' => $lat,
-				':lng' => $lng,
-				':active' => $active
+				':lng' => $lng
 		);
 		
 		$result=$sth->execute($statements);

@@ -4,6 +4,7 @@
 	<meta charset="UTF-8" />
 	<title>TUC Travels</title>
 	<link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css" />
+	<script src="<?php echo URL; ?>public/js/prototype.js" type="text/javascript"></script>
 	<script src="<?php echo URL; ?>public/js/jquery.js" type="text/javascript"></script>
 	<script src="<?php echo URL; ?>public/js/script.js" type="text/javascript"></script>
 	
@@ -47,15 +48,6 @@ Header<br />
 <a href="<?php echo URL; ?>myprofile">My Profile</a>
 <?php endif; ?>
 
-<div id="fb_login">
-	<?php if (isset($this ->fb_login["user"]) && $this ->fb_login["user"] != 0) : ?>
-      <a href="<?php echo $this -> fb_login["logoutUrl"]; ?>">Logout</a>
-    <?php else: ?>
-      <div>
-        <a href="<?php echo $this -> fb_login["loginUrl"]; ?>">Login with Facebook</a>
-      </div>
-    <?php endif ?>
-</div>
 </div>
 
 	<div id="content">

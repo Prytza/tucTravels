@@ -43,22 +43,53 @@ body {
 }
 
 #sidebar {
-	width: 230px;
-	height: 300px;
+	width: 330px;
+	height: 400px;
 	background: url(../images/green_arrow.png) 0px 130px no-repeat;
 	position: fixed;
 	top: 87px;
 	right: 0px;
 }
 
+#special {
+	width: 30px;
+	height: 170px;
+	float: left;
+	position: relative;
+}
+#sliderButton {
+	width: 30px;
+	height: 38px;
+	position: absolute;
+	bottom: 0;
+}
+
 #sidebarContent {
-	width: 200px;
-	background-color: #80a637;
+	width: 300px;
+	background: url(../images/bg.jpg);
 	color: #000;
 	position: absolute;
 	top: 0px;
 	right: 0px;
-	height: 300px;
+	height: 400px;
+	overflow: auto;
+}
+
+.inloggedUserText {
+	display: inline;
+	float: right;
+	width: 220px;
+	margin: 5px;
+}
+.inloggedUser {
+	border: 1px solid lime;
+	background: #ccc;
+	float: left;
+	width: 280px;
+	margin: 4px 0 4px 4px;
+}
+.logoutLink {
+	float: right;
 }
 
 #footer {
